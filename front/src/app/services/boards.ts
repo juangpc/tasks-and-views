@@ -81,5 +81,18 @@ export class BoardsService {
         catchError(e => of(this.errorHandler(e))));
   }
 
+  addNewView(boardId, name) {
+    const obj = {
+      name,
+      board: boardId
+    };
+    // comprobar que no está ya una con el mismo nombre !!!!!
+    return this.http.post(`${this.baseURL}/views/new`, obj, this.options)
+      .pipe(
+        map((res: Response) => {
+          return res.json();
+        }),
+        catchError(e => of(this.errorHandler(e))));
+  }
 
 }

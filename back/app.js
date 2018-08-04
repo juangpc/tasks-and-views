@@ -80,5 +80,6 @@ const authRouter = require('./routes/auth');
 app.use('/auth', authRouter);
 
 app.use('/boards', require('./routes/boards'));
+app.use('/views',require('./routes/views'));
 
 module.exports = app;

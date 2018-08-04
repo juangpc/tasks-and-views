@@ -21,6 +21,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { BoardComponent } from './components/main/board/board.component';
 import { BoardsService } from './services/boards';
+import { GroupComponent } from './components/main/group/group.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { BoardsService } from './services/boards';
     LoginComponent,
     LandingComponent,
     BoardsListComponent,
-    BoardComponent
+    BoardComponent,
+    GroupComponent
   ],
   imports: [
     BrowserModule,

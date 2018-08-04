@@ -28,13 +28,13 @@ exports.createBoard = function (req, res, next) {
 exports.getBoards = function (req, res, next) {
   const userId=req.params.id;
   Board.find({users:{$in : [userId]}})
+    .populate('views')
     .then(bL=>{
       return res.status(200).json(bL)})
     .catch(err=>{
       return res.status(500).json(err);
     })
 }
-
 
 exports.updateBoard = function (req, res, next) {
   console.log(req.params.id);
@@ -48,6 +48,9 @@ exports.updateBoard = function (req, res, next) {
   })
 }
 
+exports.createNewView= function (req,res,next) {
+
+}
 // var arr = [];
 // arr[0] = "Jani";
 // arr[1] = "Hege";
@@ -71,6 +74,7 @@ exports.deleteBoard = function (req, res, next) {
 
 exports.getOneBoard= function (req,res,next) {
   Board.findById(req.params.id)
+    .populate('views')
     .then(b=> {
       console.log('recupearar solo un board');
       return res.status(200).json(b)

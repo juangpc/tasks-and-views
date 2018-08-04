@@ -18,7 +18,9 @@ export class BoardComponent implements OnInit {
   boardId: string;
   board: Board;
   nameInputEnabled = false;
-  groupInputEnabled = false;
+  showNewViewForm = false;
+  selectedView: String;
+  selectedMapper: String;
 
   @ViewChild('focusable') vc: ElementRef;
 
@@ -32,12 +34,8 @@ export class BoardComponent implements OnInit {
     this.route.params
       .subscribe((params) => {
         this.boardId = params['id'];
-        this.board = this.bs.getActualBoard();
-        if (!this.board || this.board._id !== this.boardId) {
-          // console.log('recuperando board del servidor');
-          this.getThisBoard(this.boardId);
-          this.bs.setActualBoard(this.board);
-        }
+        // console.log('recuperando board del servidor');
+        this.getThisBoard(this.boardId);
         this.ss.isLogged().subscribe(u => {
           this.user = u;
           if (this.board) {
@@ -51,6 +49,7 @@ export class BoardComponent implements OnInit {
     this.bs.getOneBoard(boardId)
       .subscribe(b => {
         this.board = b;
+        this.bs.setActualBoard(b);
       });
   }
 
@@ -67,8 +66,9 @@ export class BoardComponent implements OnInit {
     this.nameInputEnabled = false;
     obj['_id'] = this.board._id;
     this.bs.editActualBoard(obj)
-      .subscribe((e) => {
+      .subscribe((b) => {
         console.log('board edited');
+        this.board = b;
       });
   }
 
@@ -76,15 +76,19 @@ export class BoardComponent implements OnInit {
     this.nameInputEnabled = true;
   }
 
-  newGroupInputDisabler(ng): void {
-    this.vc.nativeElement.focus();
-    this.groupInputEnabled = false;
-    // console.log(ng);
-    // console.log(this.board);
+  submitNewView(name) {
+    console.log(name);
+    this.bs.addNewView(this.board._id, name)
+      .subscribe((b) => {
+        console.log('new view added to board');
+        console.log(this.board);
+        this.board = b;
+      });
   }
 
-  newGroupInputEnabler(): void {
-    this.groupInputEnabled = true;
+  toggleShowNewViewForm() {
+    this.showNewViewForm = !this.showNewViewForm;
   }
+
 
 }
