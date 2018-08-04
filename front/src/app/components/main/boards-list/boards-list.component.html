@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<button class="btn" (click)="toggleShowForm()" [class.enabled]="showForm" >Add Board</button>
+<div *ngIf="showForm">
+  <h4>Add a new Board</h4>
+  <form>
+     name: 
+     <input  type="text" name="name" [(ngModel)]="name"><br>
+     <button type="submit" value="Submit" (click)="submitNewBoard(name)">addBoard</button>
+  </form>
+</div>
+
+<div class="board-list-container">
+  <div class="board-card" *ngFor="let b of boardsList">
+    <div (click)="goToBoard(b._id)" class="board-container">
+      <h6>{{b.name}}</h6>
+    </div>
+    <button *ngIf="b.owner==this.user._id" (click)="deleteBoard(b._id)">delete</button>
+  </div>
+</div>
+

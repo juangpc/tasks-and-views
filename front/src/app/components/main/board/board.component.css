@@ -1,0 +1,9 @@
+.input{
+  background-color: #ffffff;
+  border: 1px solid gray;
+}
+
+.input .enabled{
+  background-color: #f2c1bd;
+  border: 0;
+}
