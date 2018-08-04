@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<div class="main-container" *ngIf="board">
+<div class="main-container" *ngIf="board" #focusable>
     <a *ngIf="ss.user" [routerLink]="['/boards']">Back to your Boards</a> <br>
   <button *ngIf="isOwner" (click)="deleteThisBoard(board._id)">delete this board</button>
   <div class="board-info-container">
     <input type="text" class="input" [class.enabled]="nameInputEnabled" name="name" [value]="board.name" #name 
-    (focusout)="nameInputDisabler({name:name.value})" (click)="nameInputEnabler()" autocomplete="off">
+    (blur)="nameInputDisabler({name:name.value})" (keyup.enter)="nameInputDisabler({name:name.value})"
+    (click)="nameInputEnabler()" autocomplete="off">
   </div>
   <div class="add-group" >
     <input type="text" class="input group" [class.enabled]="groupInputEnabled" name="addGroup" #addgroup 
-    (focusout)="newGroupInputDisabler(addgroup.value)" (click)="newGroupInputEnabler()" placeholder="Add group" autocomplete="off">
+    (blur)="newGroupInputDisabler(addgroup.value)" (keyup.enter)="newGroupInputDisabler(addgroup.value)" (click)="newGroupInputEnabler()" 
+    placeholder="Add group" autocomplete="off">
   </div>
 </div>
+

@@ -3,8 +3,11 @@ const Schema = mongoose.Schema;
 
 const groupSchema = new Schema({
   name: String,
-  description: String,
-  tasks: []
+  tasks: [{
+    type: Schema.Types.ObjectId,
+    ref:'Task'
+  }],
+  order: [Number]
 }, {
     timestamps: {
       createdAt: 'created_at',

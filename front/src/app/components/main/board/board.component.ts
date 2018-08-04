@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BoardsService } from '../../../services/boards';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -19,6 +19,8 @@ export class BoardComponent implements OnInit {
   board: Board;
   nameInputEnabled = false;
   groupInputEnabled = false;
+
+  @ViewChild('focusable') vc: ElementRef;
 
   constructor(
     private ss: SessionService,
@@ -61,6 +63,7 @@ export class BoardComponent implements OnInit {
   }
 
   nameInputDisabler(obj): void {
+    this.vc.nativeElement.focus();
     this.nameInputEnabled = false;
     obj['_id'] = this.board._id;
     this.bs.editActualBoard(obj)
@@ -73,14 +76,15 @@ export class BoardComponent implements OnInit {
     this.nameInputEnabled = true;
   }
 
-  newGroupInputDisabler(ng):void {
-    this.newGroupInput= false;
-    console.log(ng);
-    console.log(this.board);
+  newGroupInputDisabler(ng): void {
+    this.vc.nativeElement.focus();
+    this.groupInputEnabled = false;
+    // console.log(ng);
+    // console.log(this.board);
   }
 
-  newGroupInputEnabler(): void{
-    this.newGroupInput= true;
+  newGroupInputEnabler(): void {
+    this.groupInputEnabled = true;
   }
 
 }

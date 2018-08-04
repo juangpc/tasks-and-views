@@ -11,15 +11,10 @@ const boardSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }],
-  views: {
-    type: Array,
-    'default':[{name:'initial'}],
-    name:String,
-    groups: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Group'
-    }] 
-  },
+  views: [{
+    type: Schema.Types.ObjectId,
+    ref: 'View'
+  }],
   tasks: [{
     type: Schema.Types.ObjectId,
     ref:'Task'

@@ -1,9 +1,9 @@
 .input{
-  background-color: #ffffff;
-  border: 1px solid gray;
+  background-color: #d6dad6;
+  border: 0;
 }
 
-.input .enabled{
-  background-color: #f2c1bd;
+.enabled{
+  background-color: #ccfecc;
   border: 0;
 }
