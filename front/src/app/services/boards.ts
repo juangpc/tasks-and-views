@@ -12,8 +12,8 @@ export class BoardsService {
   baseURL: string = environment.BASEURL;
   options: object = { withCredentials: true };
   b: Board;
-  private viewSource = new BehaviorSubject<string>('');
-  private mapperSource = new BehaviorSubject<string>('');
+  private viewSource = new BehaviorSubject<object>({});
+  private mapperSource = new BehaviorSubject<object>({});
 
   selectedView$ = this.viewSource.asObservable();
   selectedMapper$ = this.mapperSource.asObservable();

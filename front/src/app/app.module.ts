@@ -23,6 +23,7 @@ import { BoardComponent } from './components/main/board/board.component';
 import { BoardsService } from './services/boards';
 import { GroupComponent } from './components/main/group/group.component';
 import { ViewComponent } from './components/main/view/view.component';
+import { GroupService } from './services/group';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { ViewComponent } from './components/main/view/view.component';
     RouterModule.forRoot(routes),
     HttpModule
   ],
-  providers: [SessionService, BoardsService],
+  providers: [SessionService, BoardsService, GroupService],
   bootstrap: [AppComponent]
 })
 

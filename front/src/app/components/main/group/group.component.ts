@@ -9,20 +9,20 @@ import { Subscription } from 'rxjs';
 })
 export class GroupComponent implements OnInit, OnDestroy {
 
-  groups: Array<object> = [];
-  
-  selectedView: string;
-  selectedViewSubs: Subscription;
+  // groups: Array<object> = [];
+
+  // selectedView: string;
+  // selectedViewSubs: Subscription;
 
   constructor(private bs: BoardsService) { }
 
   ngOnInit() {
-    this.selectedViewSubs = this.bs.selectedView$
-      .subscribe(v => this.selectedView = v);
+    // this.selectedViewSubs = this.bs.selectedView$
+    //   .subscribe(v => this.selectedView = v);
   }
 
   ngOnDestroy() {
-    this.selectedViewSubs.unsubscribe();
+    // this.selectedViewSubs.unsubscribe();
   }
   // newGroupInputDisabler(ng): void {
   //   this.vc.nativeElement.focus();

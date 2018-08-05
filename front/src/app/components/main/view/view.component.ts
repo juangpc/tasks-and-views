@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { BoardsService } from '../../../services/boards';
+import { GroupService } from '../../../services/group';
 
 @Component({
   selector: 'app-view',
@@ -9,18 +10,19 @@ import { BoardsService } from '../../../services/boards';
 })
 export class ViewComponent implements OnInit, OnDestroy {
 
-  selView: string;
-  selMapper: string;
+  view: object;
+  mapper: object;
   selViewSubscription: Subscription;
-  showNewGroupForm = false;
-  groupList: Array<object>;
 
-  constructor(private bs: BoardsService) { }
+  showNewGroupForm = false;
+
+  constructor(private bs: BoardsService,
+              private gs: GroupService ) { }
 
   ngOnInit() {
     this.selViewSubscription = this.bs.selectedView$
       .subscribe(v => {
-        this.selView = v;
+        this.view = v;
 
       });
   }
@@ -34,7 +36,12 @@ export class ViewComponent implements OnInit, OnDestroy {
   }
 
   submitNewGroup(name) {
-    console.log(name);
+    console.log(`Creating new group with name: ${name}`);
+    // this.gs.createGroup(name, this.user._id)
+    //   .subscribe(() => {
+    //     this.toggleShowForm();
+    //     this.populateBoardsList(this.user);
+    //   });
   }
 
 
