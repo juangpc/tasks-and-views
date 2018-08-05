@@ -68,7 +68,7 @@ exports.updateView = function (req, res, next) {
 }
 
 exports.deleteView = function (req, res, next) {
-  View.findByIdAndRemove(req.params.id);
+  View.findByIdAndRemove(req.params.id)
     .then(()=>{
       console.log('View borrado');
       return res.status(200).json({message:'View deleted'});

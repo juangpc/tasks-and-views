@@ -4,15 +4,15 @@ const Task = require('../models/Task');
 
 exports.getAllGroups = function (req,res,next) {
   const viewId = req.params.id;
-  View.findById(viewId);
-    .populate('groups');
+  View.findById(viewId)
+    .populate('groups')
     .then(v=>res.status(200).json(v))
     .catch(err=>res.status(500).json(err));
 }
 
 exports.getOneGroup = function (req,res,next) {
-  Group.findById(req.params.id);
-    .populate('tasks');
+  Group.findById(req.params.id)
+    .populate('tasks')
     .then(g=>res.status(200).json(g))
     .catch(e=>res.status(500).json(e));
 }
@@ -20,7 +20,7 @@ exports.getOneGroup = function (req,res,next) {
 exports.createGroup = function (req,res,next) {
   const {viewId, name} = req.body;
   View.findById(viewId)
-    then(v =>{
+    .then(v =>{
       console.log(v);
       if(v.groups.find(g=>g.name==name)==undefined){
         const newGroup = new Group({name});
@@ -34,10 +34,10 @@ exports.createGroup = function (req,res,next) {
                 return res.status(500).json(err);
               } else {
                 View.findById(viewId)
-                  .populate('groups');
+                  .populate('groups')
                   .then(v=>res.status(200).json(v));
               }
-            }):
+            });
 
           }
         )

@@ -76,11 +76,11 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Tasks & Views';
 
-const authRouter = require('./routes/auth');
-app.use('/auth', authRouter);
+app.use('/auth', require('./routes/auth'));
 app.use('/boards', require('./routes/boards'));
 app.use('/views',require('./routes/views'));
-app.use('/groups'),require('./routes/groups'));
+app.use('/groups',require('./routes/groups'));
+app.use('/tasks',require('./routes/tasks'));
 
 
 module.exports = app;

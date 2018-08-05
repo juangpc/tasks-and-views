@@ -3,11 +3,7 @@ const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
   title: String,
-  description: String,
-  board: {
-    type: Schema.Types.ObjectId,
-    ref: 'Board'
-  }
+  description: String
 }, {
     timestamps: {
       createdAt: 'created_at',

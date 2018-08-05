@@ -24,6 +24,7 @@ import { BoardsService } from './services/boards';
 import { GroupComponent } from './components/main/group/group.component';
 import { ViewComponent } from './components/main/view/view.component';
 import { GroupService } from './services/group';
+import { TaskComponent } from './task/task.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { GroupService } from './services/group';
     BoardsListComponent,
     BoardComponent,
     GroupComponent,
-    ViewComponent
+    ViewComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
