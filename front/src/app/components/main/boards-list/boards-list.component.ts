@@ -32,7 +32,6 @@ export class BoardsListComponent implements OnInit {
       .subscribe((list) => {
         this.boardsList = list;
       });
-
   }
 
   toggleShowForm() {
@@ -45,7 +44,6 @@ export class BoardsListComponent implements OnInit {
         this.toggleShowForm();
         this.populateBoardsList(this.user);
       });
-
   }
 
   deleteBoard(boardId) {

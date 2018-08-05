@@ -12,14 +12,14 @@
 
     <div *ngIf="board.views?.length>0">
       Selected View:
-      <select [(ngModel)]="selectedView">
+      <select [(ngModel)]="selectedView" (ngModelChange)="onChangeViewSelector($event)">
         <option *ngFor="let v of board.views" [ngValue]="v.name">{{v.name}}</option>
       </select>
     </div>
 
     <div *ngIf="board.views?.length>1">
       Selected Mapper:
-      <select [(ngModel)]="selectedMapper">
+      <select [(ngModel)]="selectedMapper" (ngModelChange)="onChangeMapperSelector($event)">
         <option *ngFor="let v of board.views" [ngValue]="v.name">{{v.name}}</option>
       </select>
     </div>
@@ -35,5 +35,8 @@
       </form>
     </div>
   </div>
-  <app-group></app-group>
+<!--   <app-group></app-group> -->
 </div>
+
+{{selectedView | json}}
+{{selectedMapper | json}}

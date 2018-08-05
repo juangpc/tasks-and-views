@@ -19,8 +19,8 @@ export class BoardComponent implements OnInit {
   board: Board;
   nameInputEnabled = false;
   showNewViewForm = false;
-  selectedView: String;
-  selectedMapper: String;
+  selectedView: string;
+  selectedMapper: string;
 
   @ViewChild('focusable') vc: ElementRef;
 
@@ -90,5 +90,13 @@ export class BoardComponent implements OnInit {
     this.showNewViewForm = !this.showNewViewForm;
   }
 
+  onChangeViewSelector(view) {
+    console.log(view);
+    this.selectedView = view;
+  }
 
+  onChangeMapperSelector(view) {
+    console.log(view);
+    this.selectedMapper = view;
+  }
 }

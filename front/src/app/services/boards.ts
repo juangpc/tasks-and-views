@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Http, Response } from '@angular/http';
 import { map, catchError } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { of } from 'rxjs';
+
+import { of, BehaviorSubject } from 'rxjs';
 import { Board } from '../interfaces/board';
 
 @Injectable()
@@ -12,6 +12,11 @@ export class BoardsService {
   baseURL: string = environment.BASEURL;
   options: object = { withCredentials: true };
   b: Board;
+  private viewSource = new BehaviorSubject<string>('');
+  private mapperSource = new BehaviorSubject<string>('');
+
+  selectedView$ = this.viewSource.asObservable();
+  selectedMapper$ = this.mapperSource.asObservable();
 
   constructor(private http: Http) {
   }
@@ -93,6 +98,14 @@ export class BoardsService {
           return res.json();
         }),
         catchError(e => of(this.errorHandler(e))));
+  }
+
+  setView(view) {
+    this.viewSource.next(view);
+  }
+
+  setMapper(mapper) {
+    this.mapperSource.next(mapper);
   }
 
 }
