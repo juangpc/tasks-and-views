@@ -21,9 +21,8 @@ exports.getOneView = function (req, res, next) {
   const viewId = req.params.id;
   View.findById(viewId)
     .populate('groups')
-    .then(v=>{
-      console.log(v);
-    })
+    .then(v=> res.status(200).json(v))
+    .catch(err=> res.status(500).json(err));
 }
 
 exports.createView = function (req, res, next) {
@@ -59,6 +58,7 @@ exports.createView = function (req, res, next) {
           })
       } else{
         console.log('error vista ya existe!!')
+        return res.status(500).json({message:'error. vista ya existe!'});
       }
     })
 }
@@ -68,7 +68,12 @@ exports.updateView = function (req, res, next) {
 }
 
 exports.deleteView = function (req, res, next) {
-
+  View.findByIdAndRemove(req.params.id);
+    .then(()=>{
+      console.log('View borrado');
+      return res.status(200).json({message:'View deleted'});
+    })
+    .catch(e=>res.status(500).json(e));
 }
 
 

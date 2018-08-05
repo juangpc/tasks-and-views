@@ -65,7 +65,7 @@ exports.createNewView= function (req,res,next) {
 exports.deleteBoard = function (req, res, next) {
   Board.findByIdAndRemove(req.params.id)
     .then(()=> {
-      console.log('objeto borrado')
+      console.log('Board borrado')
       return res.status(200).json({message:'board deleted'})})
     .catch((err)=>{
       console.log('problema al borrar')

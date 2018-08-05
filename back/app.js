@@ -78,8 +78,9 @@ app.locals.title = 'Tasks & Views';
 
 const authRouter = require('./routes/auth');
 app.use('/auth', authRouter);
-
 app.use('/boards', require('./routes/boards'));
 app.use('/views',require('./routes/views'));
+app.use('/groups'),require('./routes/groups'));
+
 
 module.exports = app;
