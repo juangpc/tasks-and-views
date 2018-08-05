@@ -92,11 +92,14 @@ export class BoardComponent implements OnInit {
 
   onChangeViewSelector(view) {
     console.log(view);
+    console.log(this.board);
+    this.bs.setView(view);
     this.selectedView = view;
   }
 
   onChangeMapperSelector(view) {
     console.log(view);
+    this.bs.setMapper(view);
     this.selectedMapper = view;
   }
 }

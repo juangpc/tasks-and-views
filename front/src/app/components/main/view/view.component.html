@@ -1,3 +1,15 @@
-<p>
-  view works!
-</p>
+<button class="btn" (click)="toggleShowNewGroupForm()" #showNewViewButton>Add Group</button>
+<div *ngIf="showNewGroupForm">
+  <h4>Add a new Group</h4>
+  <form>
+    name:
+    <input type="text" name="groupName" #groupName autocomplete="off">
+    <br>
+    <button type="submit" value="Submit" (click)="submitNewGroup(groupName.value)">Submit New Group</button>
+  </form>
+</div>
+<div class="all-groups-container" *ngIf="groupsList">
+  <div class="group-container" *ngFor="let g of groupsList">
+    {{g|json}}
+  </div>
+</div>
