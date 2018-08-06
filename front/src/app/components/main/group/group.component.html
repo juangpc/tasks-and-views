@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <div class="groups-container">
-  <div *ngIf="groupsList>0">
+  <div *ngIf="groupsList?.length>0">
     <div class="group-card" *ngFor="let g of groupsList">
       {{g?.name}}
     </div>
   </div>
-  <div *ngIf="v?._id" class="group-card new-group-container">
+  <div *ngIf="viewId" class="group-card new-group-container">
     <input type="text" class="input" placeholder="add group" #name
     [value]="inputNewGroup" (keyup.enter)="submitNewGroup(name.value)" autocomplete="off">
   </div>
