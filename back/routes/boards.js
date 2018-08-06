@@ -3,9 +3,9 @@ const router = express.Router();
 
 const utils = require('./boards.utils');
 
+router.get('/all/:id',utils.getBoards);
+router.get('/:id',utils.getOneBoard);
 router.post('/new',utils.createBoard);
-router.get('/one/:id',utils.getOneBoard);
-router.get('/:id',utils.getBoards);
 router.put('/:id',utils.updateBoard);
 router.delete('/:id',utils.deleteBoard);
 

@@ -10,7 +10,9 @@ import {routes} from './routes';
 
 // services
 import { SessionService } from './services/session';
-import { BoardsListComponent } from './components/main/boards-list/boards-list.component';
+import { BoardService } from './services/board';
+import { ViewService } from './services/view';
+import { GroupService } from './services/group';
 
 // components
 import { AppComponent } from './app.component';
@@ -19,11 +21,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { BoardsListComponent } from './components/main/boards-list/boards-list.component';
 import { BoardComponent } from './components/main/board/board.component';
-import { BoardsService } from './services/boards';
 import { GroupComponent } from './components/main/group/group.component';
 import { ViewComponent } from './components/main/view/view.component';
-import { GroupService } from './services/group';
 import { TaskComponent } from './components/main/task/task.component';
 
 @NgModule({
@@ -46,7 +47,7 @@ import { TaskComponent } from './components/main/task/task.component';
     RouterModule.forRoot(routes),
     HttpModule
   ],
-  providers: [SessionService, BoardsService, GroupService],
+  providers: [SessionService, BoardService, GroupService, ViewService],
   bootstrap: [AppComponent]
 })
 

@@ -14,13 +14,14 @@ exports.getAllViews = function (req, res, next) {
     .then(b => {
       console.log(b);
       console.log(b.views);
+      return res.status(200).json(b.views);
     })
+    .catch( err => res.status(500).json(err))
 }
 
 exports.getOneView = function (req, res, next) {
   const viewId = req.params.id;
   View.findById(viewId)
-    .populate('groups')
     .then(v=> res.status(200).json(v))
     .catch(err=> res.status(500).json(err));
 }
@@ -64,7 +65,13 @@ exports.createView = function (req, res, next) {
 }
 
 exports.updateView = function (req, res, next) {
-
+  View.findByIdAndUpdate(req.params.id,req.body,{new:false},(err,data) => {
+    if(!err) {
+      res.status(200).json(data);
+    } else {
+      res.status(500).json({message:'problem updating the view'});
+    }
+  })
 }
 
 exports.deleteView = function (req, res, next) {

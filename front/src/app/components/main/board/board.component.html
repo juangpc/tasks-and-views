@@ -1,40 +1,12 @@
 <!DOCTYPE html>
-<div class="main-container" *ngIf="board" #focusable>
-  <a *ngIf="ss.user" [routerLink]="['/boards']">Back to your Boards</a>
+<div class="main-container" *ngIf="board && user" #focusable>
+  <a [routerLink]="['/boards']">Back to Boards List</a>
   <br>
   <button *ngIf="isOwner" (click)="deleteThisBoard(board._id)">delete this board</button>
-
   <div class="board-info-container">
     Board Name:
-    <input type="text" class="input" [class.enabled]="nameInputEnabled" name="name" [value]="board.name" #name
-      (blur)="nameInputDisabler({name:name.value})" (keyup.enter)="nameInputDisabler({name:name.value})" (click)="nameInputEnabler()"
-      autocomplete="off">
-
-    <div *ngIf="board.views?.length>0">
-      Selected View:
-      <select [(ngModel)]="selectedView" (ngModelChange)="onChangeViewSelector($event)">
-        <option *ngFor="let v of board.views" [ngValue]="v">{{v.name}}</option>
-      </select>
-    </div>
-
-    <div *ngIf="board.views?.length>1">
-      Selected Mapper:
-      <select [(ngModel)]="selectedMapper" (ngModelChange)="onChangeMapperSelector($event)">
-        <option *ngFor="let v of board.views" [ngValue]="v">{{v.name}}</option>
-      </select>
-    </div>
-
-    <button class="btn" (click)="toggleShowNewViewForm()" #showNewViewButton>Add View</button>
-    <div *ngIf="showNewViewForm">
-      <h4>Add a new View</h4>
-      <form>
-        name:
-        <input type="text" name="viewName" #viewName autocomplete="off">
-        <br>
-        <button type="submit" value="Submit" (click)="submitNewView(viewName.value)">Submit New View</button>
-      </form>
-    </div>
+    <input type="text" class="input" [class.enabled]="nameInputEnabled" name="name" [value]="board.name" #name (blur)="nameInputDisabler({name:name.value})"
+      (keyup.enter)="nameInputDisabler({name:name.value})" (click)="nameInputEnabler()" autocomplete="off">
+  <app-view [boardId]="boardId"></app-view>
   </div>
-  <app-view></app-view>
 </div>
-

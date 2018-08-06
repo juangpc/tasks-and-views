@@ -1,16 +1,24 @@
-{{view|json}}
-<button class="btn" (click)="toggleShowNewGroupForm()" #showNewViewButton>Add Group</button>
-<div *ngIf="showNewGroupForm">
-  <h4>Add a new Group</h4>
-  <form>
-    name:
-    <input type="text" name="groupName" #groupName autocomplete="off">
-    <br>
-    <button type="submit" value="Submit" (click)="submitNewGroup(groupName.value)">Submit New Group</button>
-  </form>
-</div>
-<div class="all-groups-container" *ngIf="groupsList">
-  <div class="group-container" *ngFor="let g of groupsList">
-    {{g|json}}
+<div class="view-controls" >
+  <input type="text" name="viewName" #newViewInput placeholder="add new view" [value]="inputNewView" 
+  (keyup.enter)="createNewView(newViewInput.value)" autocomplete="off">
+
+  <div *ngIf="viewsList.length>0">
+    Selected View:
+    <div class="select-editable-view">
+      <select [(ngModel)]="selectedView" (ngModelChange)="onViewChange($event)">
+        <option *ngFor="let v of viewsList" [ngValue]="v">{{v.name}}</option>
+      </select>
+      <input type="text" name="viewName" [value]="selectedView?.name" #selectedViewInput autocomplete="off"
+      (blur)="editSelectedView({name:selectedViewInput.value})" (keyup.enter)="editSelectedView({name:selectedViewInput.value})" />
+    </div>
+  </div>
+  
+  <div *ngIf="viewsList.length>1">
+    Selected Mapper:
+    <div class="select-editable-view">
+      <select [(ngModel)]="selectedMapper" (ngModelChange)="onMapChange($event)">
+        <option *ngFor="let v of viewsList" [ngValue]="v">{{v.name}}</option>
+      </select>
+    </div>
   </div>
 </div>

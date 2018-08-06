@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Board } from '../../../interfaces/board';
 import { User } from '../../../interfaces/user';
 import { SessionService } from '../../../services/session';
-import { BoardsService } from '../../../services/boards';
+import { BoardService } from '../../../services/board';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,11 +13,11 @@ import { Router } from '@angular/router';
 export class BoardsListComponent implements OnInit {
 
   user: User;
-  showForm = false;
   boardsList: Array<Board> = [];
+  inputNewBoard: String = null;
 
   constructor(public ss: SessionService,
-    public bs: BoardsService,
+    public bs: BoardService,
     private router: Router) { }
 
   ngOnInit() {
@@ -31,18 +31,16 @@ export class BoardsListComponent implements OnInit {
     this.bs.retrieveBoards(user._id)
       .subscribe((list) => {
         this.boardsList = list;
+        console.log(this.boardsList);
       });
   }
 
-  toggleShowForm() {
-    this.showForm = !this.showForm;
-  }
-
   submitNewBoard(name) {
-    this.bs.createBoard(name, this.user._id)
+    console.log(name);
+    this.bs.createBoard(this.user._id, name)
       .subscribe(() => {
-        this.toggleShowForm();
         this.populateBoardsList(this.user);
+        this.inputNewBoard = '';
       });
   }
 
@@ -54,8 +52,9 @@ export class BoardsListComponent implements OnInit {
   }
 
   goToBoard(boardId) {
-    const thisBoard: Board = this.boardsList.find(b => b._id === boardId);
-    this.bs.setActualBoard(thisBoard);
+    // console.log(boardId);
+    // const thisBoard: Board = this.boardsList.find(b => b._id === boardId);
+    // this.bs.setActualBoard(thisBoard);
     this.router.navigate(['boards', boardId]);
   }
 

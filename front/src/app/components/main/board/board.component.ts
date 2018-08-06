@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { BoardsService } from '../../../services/boards';
+import { BoardService } from '../../../services/board';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { User } from '../../../interfaces/user';
 import { Board } from '../../../interfaces/board';
+import { View } from '../../../interfaces/view';
 import { SessionService } from '../../../services/session';
 
 @Component({
@@ -18,15 +19,12 @@ export class BoardComponent implements OnInit {
   boardId: string;
   board: Board;
   nameInputEnabled = false;
-  showNewViewForm = false;
-  selectedView: string;
-  selectedMapper: string;
 
   @ViewChild('focusable') vc: ElementRef;
 
   constructor(
     private ss: SessionService,
-    private bs: BoardsService,
+    private bs: BoardService,
     private router: Router,
     private route: ActivatedRoute) { }
 
@@ -35,7 +33,7 @@ export class BoardComponent implements OnInit {
       .subscribe((params) => {
         this.boardId = params['id'];
         // console.log('recuperando board del servidor');
-        this.getThisBoard(this.boardId);
+        this.getOneBoard(this.boardId);
         this.ss.isLogged().subscribe(u => {
           this.user = u;
           if (this.board) {
@@ -45,11 +43,11 @@ export class BoardComponent implements OnInit {
       });
   }
 
-  getThisBoard(boardId): void {
+  getOneBoard(boardId): void {
     this.bs.getOneBoard(boardId)
       .subscribe(b => {
         this.board = b;
-        this.bs.setActualBoard(b);
+        // this.bs.setActualBoard(b);
       });
   }
 
@@ -65,7 +63,7 @@ export class BoardComponent implements OnInit {
     this.vc.nativeElement.focus();
     this.nameInputEnabled = false;
     obj['_id'] = this.board._id;
-    this.bs.editActualBoard(obj)
+    this.bs.editBoard(obj)
       .subscribe((b) => {
         console.log('board edited');
         this.board = b;
@@ -76,30 +74,4 @@ export class BoardComponent implements OnInit {
     this.nameInputEnabled = true;
   }
 
-  submitNewView(name) {
-    console.log(name);
-    this.bs.addNewView(this.board._id, name)
-      .subscribe((b) => {
-        console.log('new view added to board');
-        console.log(this.board);
-        this.board = b;
-      });
-  }
-
-  toggleShowNewViewForm() {
-    this.showNewViewForm = !this.showNewViewForm;
-  }
-
-  onChangeViewSelector(view) {
-    console.log(view);
-    console.log(this.board);
-    this.bs.setView(view);
-    this.selectedView = view;
-  }
-
-  onChangeMapperSelector(view) {
-    console.log(view);
-    this.bs.setMapper(view);
-    this.selectedMapper = view;
-  }
 }

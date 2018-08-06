@@ -6,6 +6,8 @@ const passport = require('passport');
 
 exports.createBoard = function (req, res, next) {
   const { name, userId } = req.body;
+  // console.log(name);
+  // console.log(userId);
   const newBoard = new Board({
     name,
     owner: userId,
@@ -47,20 +49,6 @@ exports.updateBoard = function (req, res, next) {
     }
   })
 }
-
-exports.createNewView= function (req,res,next) {
-
-}
-// var arr = [];
-// arr[0] = "Jani";
-// arr[1] = "Hege";
-// arr[2] = "Stale";
-// arr[3] = "Kai Jim";
-// arr[4] = "Borge";
-
-// console.log(arr.join());
-// arr.splice(2, 0, "Lene");
-// console.log(arr.join());
 
 exports.deleteBoard = function (req, res, next) {
   Board.findByIdAndRemove(req.params.id)

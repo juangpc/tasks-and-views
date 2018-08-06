@@ -1,3 +1,4 @@
+import { Board } from '../interfaces/board';
 
 export interface User {
   _id: string;
@@ -5,5 +6,5 @@ export interface User {
   username: string;
   password: string;
   email: string;
-  boards: Array<object>;
+  boards: Array<Board>;
 }
