@@ -2,7 +2,10 @@
 <div class="groups-container">
   <div *ngIf="groupsList?.length>0">
     <div class="group-card" *ngFor="let g of groupsList">
-      {{g?.name}}
+      <h5>
+        {{g.name}}
+      </h5>
+      <app-task></app-task>
     </div>
   </div>
   <div *ngIf="viewId" class="group-card new-group-container">
