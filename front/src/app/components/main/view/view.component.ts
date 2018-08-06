@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { BoardsService } from '../../../services/boards';
 import { GroupService } from '../../../services/group';
 
+
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
@@ -25,24 +26,25 @@ export class ViewComponent implements OnInit, OnDestroy {
         this.view = v;
 
       });
+
   }
 
   ngOnDestroy() {
     this.selViewSubscription.unsubscribe();
   }
 
-  toggleShowNewGroupForm() {
-    this.showNewGroupForm = !this.showNewGroupForm;
-  }
+  // toggleShowNewGroupForm() {
+  //   this.showNewGroupForm = !this.showNewGroupForm;
+  // }
 
-  submitNewGroup(name) {
-    console.log(`Creating new group with name: ${name}`);
-    // this.gs.createGroup(name, this.user._id)
-    //   .subscribe(() => {
-    //     this.toggleShowForm();
-    //     this.populateBoardsList(this.user);
-    //   });
-  }
+  // submitNewGroup(name) {
+  //   console.log(`Creating new group with name: ${name}`);
+  //   // this.gs.createGroup(name, this.user._id)
+  //   //   .subscribe(() => {
+  //   //     this.toggleShowForm();
+  //   //     this.populateBoardsList(this.user);
+  //   //   });
+  // }
 
 
 

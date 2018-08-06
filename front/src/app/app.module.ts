@@ -24,7 +24,7 @@ import { BoardsService } from './services/boards';
 import { GroupComponent } from './components/main/group/group.component';
 import { ViewComponent } from './components/main/view/view.component';
 import { GroupService } from './services/group';
-import { TaskComponent } from './task/task.component';
+import { TaskComponent } from './components/main/task/task.component';
 
 @NgModule({
   declarations: [

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { BoardsService } from '../../../services/boards';
 import { Subscription } from 'rxjs';
 
@@ -7,31 +7,33 @@ import { Subscription } from 'rxjs';
   templateUrl: './group.component.html',
   styleUrls: ['./group.component.css']
 })
-export class GroupComponent implements OnInit, OnDestroy {
+export class GroupComponent implements OnInit, OnChanges, OnDestroy {
 
-  // groups: Array<object> = [];
-
-  // selectedView: string;
-  // selectedViewSubs: Subscription;
+  selectedView: object;
+  selectedViewSubs: Subscription;
+  nameInputEnabled = false;
 
   constructor(private bs: BoardsService) { }
 
   ngOnInit() {
-    // this.selectedViewSubs = this.bs.selectedView$
-    //   .subscribe(v => this.selectedView = v);
+    this.selectedViewSubs = this.bs.selectedView$
+       .subscribe(v => this.selectedView = v);
   }
 
   ngOnDestroy() {
-    // this.selectedViewSubs.unsubscribe();
+    this.selectedViewSubs.unsubscribe();
   }
-  // newGroupInputDisabler(ng): void {
-  //   this.vc.nativeElement.focus();
-  //   this.groupInputEnabled = false;
-  //   // console.log(ng);
-  //   // console.log(this.board);
-  // }
 
-  // newGroupInputEnabler(): void {
-  //   this.groupInputEnabled = true;
-  // }
+  ngOnChanges() {
+  }
+
+  newGroupInputEnabler(): void {
+    this.nameInputEnabled = true;
+  }
+
+  nameInputSubmiter(obj): void {
+    this.nameInputContainer.focus();
+    this.
+  }
+
 }

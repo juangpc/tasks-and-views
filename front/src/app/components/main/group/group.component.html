@@ -1,11 +1,10 @@
-<div class="add-group">
-  <input type="text" class="input" [class.enabled]="nameInputEnabled" name="name" #name 
-  (blur)="nameInputDisabler(name.value)" (keyup.enter)="nameInputDisabler(name.value)" (click)="nameInputEnabler()" autocomplete="off">
-</div>
+<!DOCTYPE html>
+
 <div class="groups-container">
 
 </div>
-<!-- 
-<input type="text" class="input group" [class.enabled]="groupInputEnabled" name="addGroup" #addgroup (blur)="newGroupInputDisabler(addgroup.value)"
-(keyup.enter)="newGroupInputDisabler(addgroup.value)" (click)="newGroupInputEnabler()" placeholder="Add group" autocomplete="off"> 
--->
+<div class="add-group" #nameInputContainer>
+  <input type="text" class="input" [class.enabled]="nameInputEnabled" name="name" [value]="group.name" #name
+        (keyup.enter)="nameInputSubmiter({name:name.value})" (click)="newGroupInputEnabler()"
+        autocomplete="off">
+</div>
