@@ -54,7 +54,7 @@ export class BoardComponent implements OnInit {
   deleteThisBoard(boardId): void {
     this.bs.removeBoard(boardId)
       .subscribe(() => {
-        console.log('board deleted');
+        // console.log('board deleted');
         this.router.navigate(['/boards']);
       });
   }
@@ -65,7 +65,7 @@ export class BoardComponent implements OnInit {
     obj['_id'] = this.board._id;
     this.bs.editBoard(obj)
       .subscribe((b) => {
-        console.log('board edited');
+        // console.log('board edited');
         this.board = b;
       });
   }

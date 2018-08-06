@@ -38,8 +38,8 @@ export class BoardsListComponent implements OnInit {
   submitNewBoard(name) {
     console.log(name);
     this.bs.createBoard(this.user._id, name)
-      .subscribe(() => {
-        this.populateBoardsList(this.user);
+      .subscribe((bL) => {
+        this.boardsList = bL;
         this.inputNewBoard = '';
       });
   }

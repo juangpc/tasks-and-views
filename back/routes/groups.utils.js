@@ -17,7 +17,7 @@ exports.getAllGroups = function (req,res,next) {
   const viewId = req.params.id;
   View.findById(viewId)
     .populate('groups')
-    .then(v=>res.status(200).json(v))
+    .then(v=>res.status(200).json(v.groups))
     .catch(err=>res.status(500).json(err));
 }
 

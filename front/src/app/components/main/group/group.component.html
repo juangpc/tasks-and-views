@@ -1,29 +1,12 @@
 <!DOCTYPE html>
-
-<div class="groups-container" #nameInputContainer>
-
-</div>
-<div class="add-group" >
-  <input type="text" class="input" [class.enabled]="nameInputEnabled" name="name" [value]="group.name" #name
-        (keyup.enter)="nameInputSubmiter({name:name.value})" (click)="newGroupInputEnabler()"
-        autocomplete="off">
-</div>
-
-
-<!-- <button class="btn" (click)="toggleShowNewGroupForm()" #showNewViewButton>Add Group</button>
-<div *ngIf="showNewGroupForm">
-  <h4>Add a new Group</h4>
-  <form>
-    name:
-    <input type="text" name="groupName" #groupName autocomplete="off">
-    <br>
-    <button type="submit" value="Submit" (click)="submitNewGroup(groupName.value)">Submit New Group</button>
-  </form>
-</div> -->
-<!-- 
-<div class="all-groups-container" *ngIf="groupsList">
-  <div class="group-container" *ngFor="let g of groupsList">
-    {{g|json}}
+<div class="groups-container">
+  <div *ngIf="groupsList>0">
+    <div class="group-card" *ngFor="let g of groupsList">
+      {{g?.name}}
+    </div>
+  </div>
+  <div *ngIf="v?._id" class="group-card new-group-container">
+    <input type="text" class="input" placeholder="add group" #name
+    [value]="inputNewGroup" (keyup.enter)="submitNewGroup(name.value)" autocomplete="off">
   </div>
 </div>
- -->

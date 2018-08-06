@@ -1,12 +1,10 @@
 .select-editable-view {
   position: relative;
-  border: 2px solid red;
   width: 180px;
   height: 18px;
 }
 
 .select-editable-map {
-  border: 2px solid red;
   width: 180px;
   height: 18px;
 }

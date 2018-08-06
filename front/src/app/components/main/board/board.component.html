@@ -8,5 +8,6 @@
     <input type="text" class="input" [class.enabled]="nameInputEnabled" name="name" [value]="board.name" #name (blur)="nameInputDisabler({name:name.value})"
       (keyup.enter)="nameInputDisabler({name:name.value})" (click)="nameInputEnabler()" autocomplete="off">
   <app-view [boardId]="boardId"></app-view>
+  <app-group></app-group>
   </div>
 </div>

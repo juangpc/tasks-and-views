@@ -8,7 +8,8 @@
   </div>
   <div class="board-card new-board-container">
     <h5>
-      <input type="text" class="input" placeholder="add new board" #name [value]="inputNewBoard" (keyup.enter)="submitNewBoard(name.value)" autocomplete="off">
+      <input type="text" class="input" placeholder="add new board" #name 
+      [value]="inputNewBoard" (keyup.enter)="submitNewBoard(name.value)" autocomplete="off">
     </h5>
   </div>
 </div>

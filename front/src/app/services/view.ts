@@ -4,6 +4,7 @@ import { Http, Response } from '@angular/http';
 import { map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { View } from '../interfaces/view';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class ViewService {
@@ -11,8 +12,11 @@ export class ViewService {
   baseURL: string = environment.BASEURL;
   options: object = { withCredentials: true };
   viewsList: Array<View>;
-  view: View;
-  map: View;
+  selectedViewSource = new BehaviorSubject<View>({});
+  selectedMapperSource = new BehaviorSubject<View>({});
+
+  selectedView$ = this.selectedViewSource.asObservable();
+  selectedMapper$ = this.selectedMapperSource.asObservable();
 
   constructor(private http: Http) {
 
@@ -26,7 +30,7 @@ export class ViewService {
   }
 
   getAllViews(boardId) {
-    return this.http.get(`${this.baseURL}/views/all/${boardId}`,this.options)
+    return this.http.get(`${this.baseURL}/views/all/${boardId}`, this.options)
       .pipe(
         map((res: Response) => {
           this.viewsList = res.json();
@@ -50,9 +54,9 @@ export class ViewService {
         catchError(e => of(this.errorHandler(e))));
   }
 
-  editView(obj) {
-    console.log(obj);
-    return this.http.put(`${this.baseURL}/views/${obj._id}`,obj,this.options)
+  editView(obj: any) {
+    // console.log(obj);
+    return this.http.put(`${this.baseURL}/views/${obj._id}`, obj, this.options)
       .pipe(
         map((res: Response) => {
           return res.json();
@@ -61,45 +65,22 @@ export class ViewService {
   }
 
 
-  getOneView(viewId) {
-    return this.http.get(`${this.baseURL}/views/${viewId}`,this.options)
+  getOneView(viewId: string) {
+    return this.http.get(`${this.baseURL}/views/${viewId}`, this.options)
       .pipe(
         map((res: Response) => {
           return res.json();
         }),
-        catchError( e => of(this.errorHandler(e))));
+        catchError(e => of(this.errorHandler(e))));
   }
 
+  setView(view: View): void {
+    this.selectedViewSource.next(view);
+  }
 
-  // private viewSource = new BehaviorSubject<View>({});
-  // private mapperSource = new BehaviorSubject<View>({});
-
-  // selectedView$ = this.viewSource.asObservable();
-  // selectedMapper$ = this.mapperSource.asObservable();
-
-  //   editView(obj) {
-  //     return this.http.put(`${this.baseURL}/views/${obj._id}`, obj, this.options)
-  //       .pipe(
-  //         map((res: Response) => {
-  //           console.log(res);
-  //           return res.json();
-  //         }),
-  //         catchError(e => of(this.errorHandler(e)))
-  //       );
-  //   }
-
-  //   setView(view) {
-  //     this.viewSource.next(view);
-  //   }
-
-  //   setMapper(mapper) {
-  //     this.mapperSource.next(mapper);
-  //   }
-
-
-
-
-
+  setMapper(mapper: View): void {
+    this.selectedMapperSource.next(mapper);
+  }
 
 }
 

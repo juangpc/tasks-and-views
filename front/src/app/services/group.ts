@@ -9,17 +9,17 @@ export class GroupService {
 
   baseURL: string = environment.BASEURL;
   options: object = { withCredentials: true };
-  view: object;
-  nameInputEnabled = false;
+  // view: object;
+  // nameInputEnabled = false;
 
   constructor(private http: Http) {
 
   }
 
   errorHandler(e) {
-    console.log('GroupService Error!!!');
-    console.log(e.message);
-    console.log(e);
+    // console.log('GroupService Error!!!');
+    // console.log(e.message);
+    // console.log(e);
     return e;
   }
 
@@ -27,11 +27,20 @@ export class GroupService {
     return this.http.post(`${this.baseURL}/groups/new`, {viewId, name }, this.options)
       .pipe(
         map((res: Response) => {
-          console.log(res.json());
+          // console.log(res.json());
           return res.json();
         }),
       catchError(e => of(this.errorHandler(e)))
       );
   }
 
+  retrieveAllGroups(viewId) {
+    return this.http.get(`${this.baseURL}/groups/all/${viewId}`, this.options)
+      .pipe(
+        map((res: Response) => {
+          return res.json();
+        }),
+        catchError(e => of(this.errorHandler(e)))
+      );
+  }
 }
