@@ -7,7 +7,7 @@ const groupSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref:'Task'
   }],
-  order: [Number]
+  order: [String]
 }, {
     timestamps: {
       createdAt: 'created_at',

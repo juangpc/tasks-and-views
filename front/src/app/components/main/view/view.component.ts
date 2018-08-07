@@ -12,16 +12,19 @@ export class ViewComponent implements OnInit {
 
   @Input() boardId: string;
   viewsList: Array<View> = [];
-  mapper: View;
   inputNewView: String = null;
-  selectedView: View;
-  selectedMapper: View;
+
+  selectedView: View = undefined;
+  selectedMapper: View = undefined;
 
   constructor(private vs: ViewService) { }
 
   ngOnInit() {
     // console.log(this.boardId);
     this.retrieveAllViews(this.boardId);
+    // console.log(typeof this.selectedView)
+    this.vs.setView(this.selectedView);
+    this.vs.setMapper(this.selectedMapper);
   }
 
   retrieveAllViews(boardId) {
@@ -57,9 +60,20 @@ export class ViewComponent implements OnInit {
   editSelectedView(obj) {
     if (this.selectedView) {
       obj['_id'] = this.selectedView._id;
+      // console.log(obj);
       this.vs.editView(obj)
         .subscribe( v => {
-          // console.log('view edited');
+          this.retrieveAllViews(this.boardId);
+        });
+    }
+  }
+
+  editSelectedMapper(obj) {
+    if (this.selectedMapper) {
+      obj['_id'] = this.selectedMapper._id;
+      // console.log(obj);
+      this.vs.editView(obj)
+        .subscribe( v => {
           this.retrieveAllViews(this.boardId);
         });
     }

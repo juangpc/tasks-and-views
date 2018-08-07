@@ -14,10 +14,6 @@ const boardSchema = new Schema({
   views: [{
     type: Schema.Types.ObjectId,
     ref: 'View'
-  }],
-  tasks: [{
-    type: Schema.Types.ObjectId,
-    ref:'Task'
   }]
 }, {
     timestamps: {

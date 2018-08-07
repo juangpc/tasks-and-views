@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const Board = require('../models/Board');
+const View = require('../models/View');
 const Group = require('../models/Group');
 const Task = require('../models/Task');
 const passport = require('passport');
@@ -51,10 +52,17 @@ exports.updateBoard = function (req, res, next) {
 }
 
 exports.deleteBoard = function (req, res, next) {
+  // Board.findById(req.params.id)
+  // .then(board=>{
+  //   Promise.all(board.views.forEach(v=>View.findByIdAndRemove(v._id)))
+  //   .then(()=>Board.findByIdAndRemove(req.params.id))
+  // })
   Board.findByIdAndRemove(req.params.id)
     .then(()=> {
-      console.log('Board borrado')
-      return res.status(200).json({message:'board deleted'})})
+      
+      console.log('Board borrado');
+      return res.status(200).json({message:'board deleted'});
+    })
     .catch((err)=>{
       console.log('problema al borrar')
       return res.status(500).json(err)});

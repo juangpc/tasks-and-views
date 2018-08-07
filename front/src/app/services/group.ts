@@ -9,17 +9,16 @@ export class GroupService {
 
   baseURL: string = environment.BASEURL;
   options: object = { withCredentials: true };
-  // view: object;
-  // nameInputEnabled = false;
+
 
   constructor(private http: Http) {
 
   }
 
   errorHandler(e) {
-    // console.log('GroupService Error!!!');
-    // console.log(e.message);
-    // console.log(e);
+    console.log('GroupService Error!!!');
+    console.log(e.message);
+    console.log(e);
     return e;
   }
 

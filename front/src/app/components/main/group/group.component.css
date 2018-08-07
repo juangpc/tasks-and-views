@@ -1,9 +1,25 @@
 .input{
-  background-color: #d6dad6;
+  background-color: #ffffff;
   border: 0;
 }
 
 .enabled{
-  background-color: #ccfecc;
+  background-color: #a2f7a2;
   border: 0;
 }
+
+.groups-container{
+  display:flex;
+  //flex-wrap: wrap-reverse;
+  //width:100%;
+}
+
+.group-card{
+  text-align: center;
+  width:150px;
+  margin:20px;
+  margin: 2px solid blue;
+  border-radius: 5px;
+  background-color: rgb(107, 221, 241);
+}
+

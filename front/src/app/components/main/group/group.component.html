@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<div class="groups-container">
-  <div *ngIf="groupsList?.length>0">
+<div>
+  <div *ngIf="viewId" class="group-card new-group-container">
+    <input type="text" class="input" placeholder="add group" #newGropuName
+    [(ngModel)]="inputNewGroup" (keyup.enter)="submitNewGroup(newGropuName.value)" autocomplete="off">
+  </div>
+  <div *ngIf="groupsList?.length>0" class="groups-container">
     <div class="group-card" *ngFor="let g of groupsList">
-      <h5>
-        {{g.name}}
-      </h5>
-      <app-task></app-task>
+        <h5>{{g.name}}
+<!--             <input type="text" class="input" [class.enabled]="addEnabledClass" name="name" value="g.name" #nameGroup (click)="addEnabled"
+            (blur)="nameGroupDisabler(nameGroup.value)" (keyup.enter)="nameGroupDisabler(nameGroup.value)" autocomplete="off"> -->
+        </h5>
+        <!-- <app-task></app-task> -->
     </div>
   </div>
-  <div *ngIf="viewId" class="group-card new-group-container">
-    <input type="text" class="input" placeholder="add group" #name
-    [value]="inputNewGroup" (keyup.enter)="submitNewGroup(name.value)" autocomplete="off">
-  </div>
 </div>
+

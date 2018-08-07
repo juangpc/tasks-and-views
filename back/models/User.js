@@ -5,11 +5,7 @@ const userSchema = new Schema({
   username: String,
   name:String,
   password: String,
-  email: String,
-  boards: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Board'
-    }]
+  email: String
 }, {
   timestamps: {
     createdAt: 'created_at',

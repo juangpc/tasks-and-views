@@ -19,6 +19,8 @@
       <select [(ngModel)]="selectedMapper" (ngModelChange)="onMapChange($event)">
         <option *ngFor="let v of viewsList" [ngValue]="v">{{v.name}}</option>
       </select>
+      <input type="text" name="viewName" [value]="selectedMapper?.name" #selectedMapperInput autocomplete="off"
+      (blur)="editSelectedMapper({name:selectedMapperInput.value})" (keyup.enter)="editSelectedMapper({name:selectedMapperInput.value})" />
     </div>
   </div>
 </div>

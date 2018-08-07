@@ -21,8 +21,8 @@ export class GroupComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit() {
     this.viewSubs = this.vs.selectedView$
       .subscribe(v => {
-        if (v._id) {
-          // console.log(v);
+        if (v) {
+          console.log(v);
           this.viewId = v._id;
           this.retrieveAllGroups(this.viewId);
         }
@@ -31,6 +31,8 @@ export class GroupComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy() {
     this.viewSubs.unsubscribe();
+    console.log('destruyendo component group');
+    this.groupsList = undefined;
   }
 
   ngOnChanges() {
@@ -41,24 +43,30 @@ export class GroupComponent implements OnInit, OnChanges, OnDestroy {
     this.gs.retrieveAllGroups(viewId)
       .subscribe(gL => {
         this.groupsList = gL;
-        // console.log(this.groupsList);
+        console.log(this.groupsList);
       });
   }
 
   submitNewGroup(name: string): void {
+    this.inputNewGroup = '';
     if (this.groupsList.find(g => g.name === name) === undefined) {
       this.gs.createGroup(this.viewId, name)
         .subscribe(v => {
           this.groupsList = v.groups;
-          this.inputNewGroup = '';
+          console.log(this.inputNewGroup);
         });
     } else {
       console.log('There is group with that name!');
     }
   }
 
+  // nameGroupDisabler(name){
+  //   this.nameInput
+  // }
+
 
 }
+
 
 
   // newGroupInputEnabler(): void {
