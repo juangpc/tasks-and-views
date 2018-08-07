@@ -26,7 +26,7 @@ import { BoardComponent } from './components/main/board/board.component';
 import { GroupComponent } from './components/main/group/group.component';
 import { ViewComponent } from './components/main/view/view.component';
 import { TaskComponent } from './components/main/task/task.component';
-import { GroupEachComponent } from './components/main/group-each/group-each.component';
+import { TaskListComponent } from './components/main/task-list/task-list.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { GroupEachComponent } from './components/main/group-each/group-each.comp
     GroupComponent,
     ViewComponent,
     TaskComponent,
-    GroupEachComponent
+    TaskListComponent
   ],
   imports: [
     BrowserModule,

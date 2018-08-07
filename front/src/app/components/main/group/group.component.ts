@@ -53,49 +53,11 @@ export class GroupComponent implements OnInit, OnChanges, OnDestroy {
       this.gs.createGroup(this.viewId, name)
         .subscribe(v => {
           this.groupsList = v.groups;
-          console.log(this.inputNewGroup);
         });
     } else {
       console.log('There is group with that name!');
     }
   }
 
-  // nameGroupDisabler(name){
-  //   this.nameInput
-  // }
-
-
 }
-
-
-
-  // newGroupInputEnabler(): void {
-  //   this.nameInputEnabled = true;
-  // }
-
-  // nameInputSubmiter(obj): void {
-  //   this.nameInputContainer.nativeElement.focus();
-  //   this.nameInputEnabled = false;
-  //   obj['_id'] = this.view._id;
-  //   this.bs.editView(obj)
-  //     .subscribe(v => {
-  //       console.log('view edited');
-  //       this.view = v;
-  //     });
-  // }
-
-    // toggleShowNewGroupForm() {
-    //   this.showNewGroupForm = !this.showNewGroupForm;
-    // }
-
-    // submitNewGroup(name) {
-    //   console.log(`Creating new group with name: ${name}`);
-    //   // this.gs.createGroup(name, this.user._id)
-    //   //   .subscribe(() => {
-    //   //     this.toggleShowForm();
-    //   //     this.populateBoardsList(this.user);
-    //   //   });
-    // }
-
-
 
