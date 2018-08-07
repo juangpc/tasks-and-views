@@ -31,12 +31,12 @@ export class BoardsListComponent implements OnInit {
     this.bs.retrieveBoards(user._id)
       .subscribe((list) => {
         this.boardsList = list;
-        console.log(this.boardsList);
+        // console.log(this.boardsList);
       });
   }
 
   submitNewBoard(name) {
-    console.log(name);
+    // console.log(name);
     this.bs.createBoard(this.user._id, name)
       .subscribe((bL) => {
         this.boardsList = bL;

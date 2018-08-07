@@ -56,7 +56,7 @@ export class ViewService {
   }
 
   editView(obj: any) {
-    console.log(obj);
+    // console.log(obj);
     return this.http.put(`${this.baseURL}/views/${obj._id}`, obj, this.options)
       .pipe(
         map((res: Response) => {

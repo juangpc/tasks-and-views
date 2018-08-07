@@ -4,7 +4,11 @@ const Schema = mongoose.Schema;
 const taskSchema = new Schema({
   title: String,
   description: String,
-  active: Boolean
+  active: Boolean,
+  board: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Board'
+  }]
 });
 
 const Task = mongoose.model('Task', taskSchema);

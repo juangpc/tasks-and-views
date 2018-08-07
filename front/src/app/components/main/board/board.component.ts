@@ -37,7 +37,7 @@ export class BoardComponent implements OnInit {
         this.ss.isLogged().subscribe(u => {
           this.user = u;
           if (this.board) {
-            this.isOwner = (this.user._id === this.board['owner']);
+            this.isOwner = (this.user._id === this.board.owner._id);
           }
         });
       });

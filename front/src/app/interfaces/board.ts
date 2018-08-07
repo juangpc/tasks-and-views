@@ -5,8 +5,7 @@ import { Task } from '../interfaces/task';
 export interface Board {
   _id: string;
   name: string;
-  user: User;
+  owner: User;
   users: Array<User>;
   views: Array<View>;
-  tasks: Array<Task>;
 }
