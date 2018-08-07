@@ -5,7 +5,7 @@
   </div>
   <div class="salutation" *ngIf="ss.user"><h4 >Hi, {{ss.user.username}}</h4></div>
   <div class="menu">
-    <a [routerLink]="['']">Home</a> |
+    <a [routerLink]="['']">Home</a>
     <a *ngIf="!ss.user" [routerLink]="['login']">Log In</a>
     <a *ngIf="!ss.user" [routerLink]="['signup']">Sign Up</a>
     <a *ngIf="ss.user" (click)="logout()" href="#">Log out</a>

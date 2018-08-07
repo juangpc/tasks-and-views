@@ -13,7 +13,6 @@ export class HeaderComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.ss.isLogged().subscribe();
   }
 
   logout() {
