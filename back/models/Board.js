@@ -15,13 +15,15 @@ const boardSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'View'
   }]
-}, {
-    timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at'
-    }
-  });
+});
 
 const Board = mongoose.model('Board', boardSchema);
 module.exports = Board;
 
+/* , {
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
+  }
+}
+ */

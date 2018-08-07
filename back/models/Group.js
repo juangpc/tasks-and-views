@@ -8,12 +8,7 @@ const groupSchema = new Schema({
     ref:'Task'
   }],
   order: [String]
-}, {
-    timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at'
-    }
-  });
+});
 
 const Group = mongoose.model('Group', groupSchema);
 module.exports = Group;

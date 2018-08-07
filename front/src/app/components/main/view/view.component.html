@@ -23,4 +23,15 @@
       (blur)="editSelectedMapper({name:selectedMapperInput.value})" (keyup.enter)="editSelectedMapper({name:selectedMapperInput.value})" />
     </div>
   </div>
+  <div *ngIf="viewsList.length>0">
+      Delete View:
+      <div class="select-editable-view">
+        <select [(ngModel)]="viewToDelete" (ngModelChange)="onDeleteViewChange($event)">
+          <option *ngFor="let v of viewsList" [ngValue]="v">{{v.name}}</option>
+        </select>
+      </div>
+    </div>
 </div>
+
+
+

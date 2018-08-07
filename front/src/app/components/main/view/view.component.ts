@@ -16,6 +16,7 @@ export class ViewComponent implements OnInit {
 
   selectedView: View = undefined;
   selectedMapper: View = undefined;
+  viewToDelete: View = undefined;
 
   constructor(private vs: ViewService) { }
 
@@ -77,6 +78,14 @@ export class ViewComponent implements OnInit {
           this.retrieveAllViews(this.boardId);
         });
     }
+  }
+
+  onDeleteViewChange() {
+    this.vs.deleteView(this.viewToDelete._id)
+      .subscribe(() => {
+        this.retrieveAllViews(this.boardId);
+        console.log('view deleted');
+      });
   }
 
 }

@@ -11,11 +11,6 @@ const viewSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Group'
   }]
-},{
-  timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
-  }
 });
 
 const View = mongoose.model('View',viewSchema);

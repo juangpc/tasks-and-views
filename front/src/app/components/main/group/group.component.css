@@ -10,15 +10,13 @@
 
 .groups-container{
   display:flex;
-  //flex-wrap: wrap-reverse;
-  //width:100%;
 }
 
 .group-card{
   text-align: center;
   width:150px;
-  margin:20px;
-  margin: 2px solid blue;
+  margin:2px;
+  border: 2px solid blue;
   border-radius: 5px;
   background-color: rgb(107, 221, 241);
 }

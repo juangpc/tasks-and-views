@@ -49,6 +49,7 @@ export class ViewService {
     return this.http.post(`${this.baseURL}/views/new`, obj, this.options)
       .pipe(
         map((res: Response) => {
+          // console.log(res.json());
           return res.json();
         }),
         catchError(e => of(this.errorHandler(e))));
@@ -76,11 +77,20 @@ export class ViewService {
 
   setView(view: View): void {
     this.selectedViewSource.next(view);
-    console.log(view);
   }
 
   setMapper(mapper: View): void {
     this.selectedMapperSource.next(mapper);
+  }
+
+  deleteView(id: string): any {
+    return this.http.delete(`${this.baseURL}/views/${id}`, this.options)
+      .pipe(
+        map((res: Response) => {
+          console.log(res.json());
+          return res.json();
+        }),
+        catchError(e => of(this.errorHandler(e))));
   }
 
 }
