@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "dev": "DEBUG=tasks-and-views:* nodemon ./bin/www"
+    "dev": "DEBUG=tasks-and-views:* nodemon ./bin/www",
+    "dev-inspector": "DEBUG=tasks-and-views:* nodemon ./bin/www --inspector --debug-brk"
   },
   "dependencies": {
     "body-parser": "~1.18.2",

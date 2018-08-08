@@ -20,10 +20,9 @@ const boardSchema = new Schema({
 const Board = mongoose.model('Board', boardSchema);
 module.exports = Board;
 
-/* , {
-  timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
-  }
-}
- */
+
+//middle ware for all de deletions
+//   Person.pre('remove', function(next) {
+//     // Remove all the assignment docs that reference the removed person.
+//     this.model('Assignment').remove({ person: this._id }, next);
+// });
