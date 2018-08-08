@@ -1,10 +1,10 @@
-<div class="task-list-container">
+<div class="task-group-container" [ngStyle]="{'background-color':groupColor}">
   <div>
-    <!-- link to delete this list -->
-    <!-- link to change the color of this list -->
-  </div>
-  <div class="task-list-name-container">
-    {{list.name}}
+      <div (click)="onDeleteGroup(group._id)">X</div>
+      <input type="color" [(ngModel)]="groupColor" (change)="saveColor()">
+    </div>
+  <div class="task-group-name-container">
+    {{group.name}}
   </div>
   <!-- lista de tasks -->
   <!-- añadir un nuevo task -->

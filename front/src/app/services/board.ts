@@ -39,18 +39,14 @@ export class BoardService {
   }
 
   createBoard(userId, name) {
-    if (this.boardsList.find(b => b.name === name) === undefined) {
-      return this.http.post(`${this.baseURL}/boards/new`, { userId, name }, this.options)
-        .pipe(
-          map((res: Response) => {
-            // console.log(res.json());
-            return res.json();
-          }),
-          catchError(e => of(this.errorHandler(e)))
-        );
-    } else {
-      // console.log('board already exists!');
-    }
+    return this.http.post(`${this.baseURL}/boards/new`, { userId, name }, this.options)
+      .pipe(
+        map((res: Response) => {
+          // console.log(res.json());
+          return res.json();
+        }),
+        catchError(e => of(this.errorHandler(e)))
+      );
   }
 
   getOneBoard(boardId) {

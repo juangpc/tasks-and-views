@@ -38,16 +38,12 @@ export class ViewComponent implements OnInit {
 
   createNewView(name) {
     // console.log(name);
-    if (this.viewsList.find(v => v.name === name) === undefined) {
-      this.vs.addNewView(this.boardId, name)
-        .subscribe((b) => {
-          // console.log('new view added to board');
-          this.viewsList = b.views;
-          this.inputNewView = '';
-        });
-    } else {
-      console.log('View already created!!');
-    }
+    this.vs.addNewView(this.boardId, name)
+      .subscribe((b) => {
+        // console.log('new view added to board');
+        this.viewsList = b.views;
+        this.inputNewView = '';
+      });
   }
 
   onViewChange() {
@@ -63,7 +59,7 @@ export class ViewComponent implements OnInit {
       obj['_id'] = this.selectedView._id;
       // console.log(obj);
       this.vs.editView(obj)
-        .subscribe( v => {
+        .subscribe(v => {
           this.retrieveAllViews(this.boardId);
         });
     }
@@ -74,7 +70,7 @@ export class ViewComponent implements OnInit {
       obj['_id'] = this.selectedMapper._id;
       // console.log(obj);
       this.vs.editView(obj)
-        .subscribe( v => {
+        .subscribe(v => {
           this.retrieveAllViews(this.boardId);
         });
     }

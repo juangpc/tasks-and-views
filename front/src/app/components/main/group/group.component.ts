@@ -49,14 +49,14 @@ export class GroupComponent implements OnInit, OnChanges, OnDestroy {
 
   submitNewGroup(name: string): void {
     this.inputNewGroup = '';
-    if (this.groupsList.find(g => g.name === name) === undefined) {
       this.gs.createGroup(this.viewId, name)
         .subscribe(v => {
           this.groupsList = v.groups;
         });
-    } else {
-      console.log('There is group with that name!');
-    }
+  }
+
+  updateGroupList(): void {
+    this.retrieveAllGroups(this.viewId);
   }
 
 }

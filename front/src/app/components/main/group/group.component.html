@@ -6,7 +6,7 @@
   </div>
   <div *ngIf="groupsList?.length>0" class="groups-container">
     <div class="group-card" *ngFor="let g of groupsList">
-      <app-task-list [list]="g"></app-task-list>
+      <app-task-list [group]="g" (triggerUpdateList)="updateGroupList($event)"></app-task-list>
     </div>
   </div>
 </div>

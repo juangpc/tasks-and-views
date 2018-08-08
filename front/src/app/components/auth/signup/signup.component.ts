@@ -15,7 +15,7 @@ export class SignupComponent implements OnInit {
   }
 
   submitForm(newUser) {
-    console.log(newUser);
+    // console.log(newUser);
     this.ss.signup(newUser)
       .subscribe((user: any) => {
         // console.log(`WELCOME USER ${user.username}, register OK`);
