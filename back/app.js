@@ -82,5 +82,8 @@ app.use('/views',require('./routes/views'));
 app.use('/groups',require('./routes/groups'));
 app.use('/tasks',require('./routes/tasks'));
 
+app.use(function(req, res) {
+  res.sendfile(__dirname + '/public/index.html');
+});
 
 module.exports = app;
