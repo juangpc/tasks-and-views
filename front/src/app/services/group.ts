@@ -17,7 +17,6 @@ export class GroupService {
     { name: 'blue', value: '#0000ff' },
     { name: 'brown', value: '#a52a2a' },
     { name: 'cyan', value: '#00ffff' },
-    { name: 'fuchsia', value: '#ff00ff' },
     { name: 'gold', value: '#ffd700' },
     { name: 'green', value: '#008000' },
     { name: 'indigo', value: '#4b0082' },
