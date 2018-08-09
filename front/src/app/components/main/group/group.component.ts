@@ -15,9 +15,14 @@ export class GroupComponent implements OnInit, OnDestroy {
 
   view: View;
   viewSubs: Subscription;
-  public dragSubs = new Subscription();
+  public dragSubsGroup = new Subscription();
   public GROUPS = 'GROUPS';
   public groupsList: Array<Group>;
+  private groupsList_2: Array<Group>;
+
+  public TASKS = 'TASKS';
+  public dragSubsTask = new Subscription();
+
   inputNewGroup: string = null;
   nameInputEnabled = false;
 
@@ -25,7 +30,7 @@ export class GroupComponent implements OnInit, OnDestroy {
     private gs: GroupService,
     private ds: DragulaService) {
 
-    this.dragSubs.add(this.ds.dropModel(this.GROUPS)
+    this.dragSubsGroup.add(this.ds.dropModel(this.GROUPS)
       .subscribe(({ targetModel }) => {
         // console.log(targetModel);
         // console.log(this.groupsList);
@@ -36,8 +41,26 @@ export class GroupComponent implements OnInit, OnDestroy {
           groups: []
         };
         targetModel.forEach(e => updatedView.groups.push(e._id));
-        console.log(updatedView);
         this.saveView(updatedView);
+      }));
+
+    this.dragSubsTask.add(this.ds.dropModel(this.TASKS)
+      .subscribe(({ name, el, target, source, sourceModel, targetModel, item }) => {
+        // console.log('dropModel:');
+        // console.log(el);
+        // console.log(source);
+        // console.log(target);
+        console.log(name);
+        console.log(sourceModel);
+        console.log(targetModel);
+        console.log(item);
+        console.log(this.groupsList);
+        // console.log(this.groupsList.forEach((g,i) => {
+        //   g.tasks.find(t => {
+        //     return t._id === item._id;
+        //   })
+        // }))
+
       }));
   }
 
@@ -55,14 +78,16 @@ export class GroupComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.viewSubs.unsubscribe();
     // console.log('destruyendo component group');
-    this.dragSubs.unsubscribe();
+    this.dragSubsGroup.unsubscribe();
+    this.dragSubsTask.unsubscribe();
   }
 
   retrieveAllGroups(viewId) {
     this.gs.retrieveAllGroups(viewId)
       .subscribe(gL => {
         this.groupsList = gL;
-        // console.log(this.groupsList);
+        this.groupsList_2 = this.groupsList.slice();
+        console.log(this.groupsList_2);
       });
   }
 

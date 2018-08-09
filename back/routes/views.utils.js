@@ -12,8 +12,8 @@ exports.getAllViews = function (req, res, next) {
   Board.findById(boardId)
     .populate('views')
     .then(b => {
-      console.log(b);
-      console.log(b.views);
+      // console.log(b);
+      // console.log(b.views);
       return res.status(200).json(b.views);
     })
     .catch(err => res.status(500).json(err))
@@ -42,7 +42,7 @@ exports.createView = function (req, res, next) {
       newView.save().then(
         nV => {
           console.log('nueva view creada');
-          console.log(nV);
+          // console.log(nV);
           // const conditions = { _id: board, 'views.name': { $ne: name } };
           const conditions = { _id: board };
           const update = { $addToSet: { views: nV } };
@@ -62,7 +62,7 @@ exports.createView = function (req, res, next) {
 
 exports.updateView = function (req, res, next) {
   console.log('updating board');
-  console.log(req.body);
+  // console.log(req.body);
   View.findByIdAndUpdate(req.params.id, req.body, { new: false }, (err, data) => {
     if (!err) {
       res.status(200).json(data);

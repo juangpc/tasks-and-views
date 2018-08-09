@@ -4,9 +4,9 @@
       <input type="color" [(ngModel)]="groupColor" (change)="saveColor()">
     </div>
   <div class="task-group-name-container">
-    <input type="text" class="input" [class.enabled]="groupNameInputEnabled" name="groupName" [value]="group.name" 
+    <input type="text" class="input-name" [class.enabled]="groupNameInputEnabled" name="groupName" [value]="group.name" 
     #groupName (blur)="groupNameInputDisabler(groupName.value)" (keyup.enter)="groupNameInputDisabler(groupName.value)"
-    (click)="groupNameInputEnabler()" autocomplete="off">    
+    (click)="groupNameInputEnabler()" autocomplete="off" >    
   </div>
   <div class="task-list-container" dragula="TASKS" [(dragulaModel)]='group.tasks'>
     <div class="task-container" *ngFor="let t of group.tasks">

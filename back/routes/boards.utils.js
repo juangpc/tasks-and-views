@@ -54,8 +54,8 @@ exports.createBoard = function (req, res, next) {
 }
 
 exports.updateBoard = function (req, res, next) {
-  console.log(req.params.id);
-  console.log(req.body);
+  // console.log(req.params.id);
+  // console.log(req.body);
   Board.findByIdAndUpdate(req.params.id,req.body,{new:false},(err,data)=>{
     if(!err){
       res.status(200).json(data);

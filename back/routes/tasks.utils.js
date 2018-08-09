@@ -13,7 +13,7 @@ exports.getAllTasks = function (req, res, next) {
   Group.findById(req.params.id)
     .populate('tasks')
     .then(g => {
-      console.log(g);
+      // console.log(g);
       return res.status(200).json(g.tasks);
     })
     .catch(err => res.status(500).json(err));
@@ -36,7 +36,7 @@ exports.getOneTask = function (req, res, next) {
 }
 
 exports.createTask = function (req, res, next) {
-  console.log(req.body);
+  // console.log(req.body);
   const { group, board, name } = req.body;
   const newTask = new Task({
     name,

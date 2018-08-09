@@ -4,7 +4,6 @@ import { Group } from '../../../interfaces/group';
 import { TaskService } from '../../../services/task';
 import { BoardService } from '../../../services/board';
 import { Subscription } from 'rxjs';
-import { DragulaService } from 'ng2-dragula';
 
 @Component({
   selector: 'app-task-list',
@@ -17,31 +16,20 @@ export class TaskListComponent implements OnInit {
   @Input() group: Group;
   @Output() triggerUpdateList = new EventEmitter<string>();
   groupColor: string;
-  groupNameInputEnabled = false;
+  groupNameInputDisabled = true;
   inputNewTask = '';
-  public TASKS = 'TASKS';
-  public dragSubs = new Subscription();
+  // public TASKS = 'TASKS';
+  // public dragSubs = new Subscription();
 
   boardIdSubs: Subscription;
   boardId: string;
 
   constructor(private gs: GroupService,
     private bs: BoardService,
-    private ts: TaskService,
-    private ds: DragulaService) {
-
-    this.dragSubs.add(this.ds.dropModel(this.TASKS)
-      .subscribe(({sourceModel, targetModel}) => {
-        console.log(this.group.name);
-        console.log(this.group.tasks);
-        // console.log(this.group.tasks);
-        console.log(sourceModel);
-        console.log(targetModel);
-      }));
-    }
+    private ts: TaskService) { }
 
   ngOnInit() {
-    // console.log(this.group);
+    // console.log(this.group.name);
     if (this.group) {
       this.groupColor = this.group.color;
     }
@@ -74,13 +62,13 @@ export class TaskListComponent implements OnInit {
   }
 
   groupNameInputDisabler(name) {
-    this.groupNameInputEnabled = false;
+    this.groupNameInputDisabled = true;
     this.group.name = name;
     this.gs.updateGroup(this.group).subscribe();
   }
 
   groupNameInputEnabler() {
-    this.groupNameInputEnabled = true;
+    this.groupNameInputDisabled = false;
   }
 
   submitNewTask(name) {

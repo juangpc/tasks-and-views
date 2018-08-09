@@ -5,9 +5,13 @@ const Task = require('../models/Task');
 exports.getAllGroups = function (req, res, next) {
   const viewId = req.params.id;
   View.findById(viewId)
-    .populate('groups')
-    .then(v => res.status(200).json(v.groups))
-    .catch(err => res.status(500).json(err));
+  .populate({path: 'groups', populate: { path: 'tasks' }})
+  .then(v => res.status(200).json(v.groups))
+  .catch(err => res.status(500).json(err));
+  // View.findById(viewId)
+  //   .populate('groups')
+  //   .then(v => res.status(200).json(v.groups))
+  //   .catch(err => res.status(500).json(err));
 }
 
 exports.getOneGroup = function (req, res, next) {
