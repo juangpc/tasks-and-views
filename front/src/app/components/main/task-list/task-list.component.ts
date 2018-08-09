@@ -4,6 +4,7 @@ import { Group } from '../../../interfaces/group';
 import { TaskService } from '../../../services/task';
 import { BoardService } from '../../../services/board';
 import { Subscription } from 'rxjs';
+import { DragulaService } from 'ng2-dragula';
 
 @Component({
   selector: 'app-task-list',
@@ -18,16 +19,29 @@ export class TaskListComponent implements OnInit {
   groupColor: string;
   groupNameInputEnabled = false;
   inputNewTask = '';
+  public TASKS = 'TASKS';
+  public dragSubs = new Subscription();
 
   boardIdSubs: Subscription;
   boardId: string;
 
   constructor(private gs: GroupService,
     private bs: BoardService,
-    private ts: TaskService) { }
+    private ts: TaskService,
+    private ds: DragulaService) {
+
+    this.dragSubs.add(this.ds.dropModel(this.TASKS)
+      .subscribe(({sourceModel, targetModel}) => {
+        console.log(this.group.name);
+        console.log(this.group.tasks);
+        // console.log(this.group.tasks);
+        console.log(sourceModel);
+        console.log(targetModel);
+      }));
+    }
 
   ngOnInit() {
-    console.log(this.group);
+    // console.log(this.group);
     if (this.group) {
       this.groupColor = this.group.color;
     }

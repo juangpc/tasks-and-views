@@ -53,9 +53,9 @@ export class GroupService {
     return e;
   }
 
-  createGroup(viewId, name) {
+  createGroup(viewId, boardId, name) {
     const color = this.colors[Math.floor(Math.random() * this.colors.length)]['value'];
-    return this.http.post(`${this.baseURL}/groups/new`, { viewId, name , color}, this.options)
+    return this.http.post(`${this.baseURL}/groups/new`, { viewId, name , boardId, color}, this.options)
       .pipe(
         map((res: Response) => {
           // console.log(res.json());

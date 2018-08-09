@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Group } from '../../../interfaces/group';
+import { View } from '../../../interfaces/view';
 import { GroupService } from '../../../services/group';
 import { ViewService } from '../../../services/view';
 import { DragulaService } from 'ng2-dragula';
@@ -12,43 +13,41 @@ import { DragulaService } from 'ng2-dragula';
 })
 export class GroupComponent implements OnInit, OnDestroy {
 
-  viewId: string;
+  view: View;
   viewSubs: Subscription;
-  dragSubs = new Subscription();
-
-  groupsList: Array<Group>;
+  public dragSubs = new Subscription();
+  public GROUPS = 'GROUPS';
+  public groupsList: Array<Group>;
   inputNewGroup: string = null;
   nameInputEnabled = false;
 
   constructor(private vs: ViewService,
-              private gs: GroupService,
-              private ds: DragulaService) {
-    this.dragSubs.add(this.ds.dropModel('GROUPS')
-      .subscribe(({ name, el, target, source, sibling, sourceModel, targetModel, item }) => {
-        console.log(name);
-        console.log(el);
-        console.log(target);
-        console.log(source);
-        console.log(sibling);
-        console.log(sourceModel);
-        console.log(targetModel);
-        console.log(item);
-      }));
-      // .subscribe(({ name, el, source}) => {
-      //   console.log(name);
-      //   console.log(el);
-      //   console.log(source);
+    private gs: GroupService,
+    private ds: DragulaService) {
 
-      // }));
+    this.dragSubs.add(this.ds.dropModel(this.GROUPS)
+      .subscribe(({ targetModel }) => {
+        // console.log(targetModel);
+        // console.log(this.groupsList);
+        const updatedView = {
+          _id: this.view._id,
+          name: this.view.name,
+          board: this.view.board,
+          groups: []
+        };
+        targetModel.forEach(e => updatedView.groups.push(e._id));
+        console.log(updatedView);
+        this.saveView(updatedView);
+      }));
   }
 
   ngOnInit() {
     this.viewSubs = this.vs.selectedView$
       .subscribe(v => {
         if (v) {
-          console.log(v);
-          this.viewId = v._id;
-          this.retrieveAllGroups(this.viewId);
+          // console.log(v);
+          this.view = v;
+          this.retrieveAllGroups(this.view._id);
         }
       });
   }
@@ -70,14 +69,22 @@ export class GroupComponent implements OnInit, OnDestroy {
   submitNewGroup(name: string): void {
     this.inputNewGroup = '';
     this.nameInputEnabled = false;
-    this.gs.createGroup(this.viewId, name)
+    this.gs.createGroup(this.view._id, this.view.board, name)
       .subscribe(v => {
         this.groupsList = v.groups;
       });
   }
 
+  saveView(newView) {
+    this.vs.editView(newView)
+      .subscribe(gl => {
+        // console.log(gl);
+        // this.groupsList=gl;
+      });
+  }
+
   updateGroupList(): void {
-    this.retrieveAllGroups(this.viewId);
+    this.retrieveAllGroups(this.view._id);
   }
 
   nameInputEnabler() {

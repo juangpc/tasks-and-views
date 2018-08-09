@@ -35,9 +35,9 @@ export class TaskService {
   }
 
   createTask(board, group, name) {
-    console.log(board);
-    console.log(group);
-    console.log(name);
+    // console.log(board);
+    // console.log(group);
+    // console.log(name);
     return this.http.post(`${this.baseURL}/tasks/new`, { board, group, name }, this.options)
       .pipe(
         map((res: Response) => {

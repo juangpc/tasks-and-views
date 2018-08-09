@@ -5,6 +5,7 @@ const groupSchema = new Schema({
   name: String,
   color: String,
   view: {type: Schema.Types.ObjectId,ref:'View'},
+  board: {type: Schema.Types.ObjectId,ref:'Board'},
   tasks: [{type: Schema.Types.ObjectId,ref:'Task'}]
 });
 

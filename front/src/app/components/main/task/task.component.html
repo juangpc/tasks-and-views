@@ -3,7 +3,7 @@
     <input type="text" class="input task-name-section" [class.enabled]="nameInputEnabled" (click)="enableNameInput()" autocomplete="off" 
     #name [(ngModel)]="task.name" [value]="task.name" (blur)="updateTask()" (keyup.enter)="updateTask()">
     <button (click)="toggleDescription()" [innerHTML]="buttonText">edit description</button>
-    <div *ngIf="showDescriptionMenu" >
+    <div *ngIf="showDescriptionMenu" class="description-form">
         <textarea rows="2" cols="10" #description placeholder="enter the event description" 
         (blur)="updateTask()" (keyup.enter)="updateTask()" [(ngModel)]="task.description">
         </textarea>

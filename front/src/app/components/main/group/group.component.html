@@ -1,5 +1,5 @@
 <div>
-  <div *ngIf="viewId" class="group-card new-group-container">
+  <div *ngIf="view" class="group-card new-group-container">
     <input type="text" class="input" [class.enabled]="nameInputEnabled" (click)="nameInputEnabler()" placeholder="add group" #newGropuName [(ngModel)]="inputNewGroup" (keyup.enter)="submitNewGroup(newGropuName.value)"
       autocomplete="off" (blur)="nameInputDisabler()">
   </div>

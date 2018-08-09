@@ -20,3 +20,10 @@
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
   filter: alpha(opacity=20);
 }
+
+.description-form{
+  position: absolute;
+  right: 0;
+  transform: translateX(100%);
+  z-index: 1;
+}

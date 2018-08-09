@@ -8,7 +8,7 @@
     #groupName (blur)="groupNameInputDisabler(groupName.value)" (keyup.enter)="groupNameInputDisabler(groupName.value)"
     (click)="groupNameInputEnabler()" autocomplete="off">    
   </div>
-  <div class="task-list-container" dragula="DRAG" [(dragulaModel)]='group.tasks'>
+  <div class="task-list-container" dragula="TASKS" [(dragulaModel)]='group.tasks'>
     <div class="task-container" *ngFor="let t of group.tasks">
       <app-task [task]="t" (triggerUpdateList)="retrieveGroup($event)"></app-task>
     </div>

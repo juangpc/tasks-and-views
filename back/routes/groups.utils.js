@@ -22,7 +22,7 @@ exports.createGroup = function (req, res, next) {
   View.findById(viewId)
     .then(v => {
       console.log(v);
-      const newGroup = new Group({ name, color, view: v._id });
+      const newGroup = new Group({ name, color, view: v._id, board: v.board });
       newGroup.save().then(
         ng => {
           console.log('nuevo grupo creado');

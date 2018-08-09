@@ -20,7 +20,7 @@ export class TaskComponent implements OnInit {
   constructor(private ts: TaskService) { }
 
   ngOnInit() {
-    console.log(this.task);
+    //  console.log(this.task);
     this.description = this.task.description;
   }
 
