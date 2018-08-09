@@ -18,8 +18,6 @@ export class TaskListComponent implements OnInit {
   groupColor: string;
   groupNameInputDisabled = true;
   inputNewTask = '';
-  // public TASKS = 'TASKS';
-  // public dragSubs = new Subscription();
 
   boardIdSubs: Subscription;
   boardId: string;

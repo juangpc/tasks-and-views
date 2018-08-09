@@ -20,6 +20,18 @@ export class TaskService {
     return e;
   }
 
+  getAllTasksInBoard(boardId) {
+    return this.http.get(`${this.baseURL}/tasks/allinboard/${boardId}`, this.options)
+      .pipe(
+        map((res: Response) => {
+          return res.json();
+        }),
+        catchError(e => of(this.errorHandler(e)))
+      );
+  }
+
+
+
   getAllTasks(groupId) {
     return this.http.get(`${this.baseURL}/tasks/all/${groupId}`, this.options)
       .pipe(

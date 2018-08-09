@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Group } from '../../../interfaces/group';
 import { View } from '../../../interfaces/view';
+import { Task } from '../../../interfaces/task';
 import { GroupService } from '../../../services/group';
 import { ViewService } from '../../../services/view';
 import { DragulaService } from 'ng2-dragula';
@@ -18,7 +19,7 @@ export class GroupComponent implements OnInit, OnDestroy {
   public dragSubsGroup = new Subscription();
   public GROUPS = 'GROUPS';
   public groupsList: Array<Group>;
-  private groupsList_2: Array<Group>;
+  public tasksPool: Array<Task>;
 
   public TASKS = 'TASKS';
   public dragSubsTask = new Subscription();
@@ -45,22 +46,21 @@ export class GroupComponent implements OnInit, OnDestroy {
       }));
 
     this.dragSubsTask.add(this.ds.dropModel(this.TASKS)
-      .subscribe(({ name, el, target, source, sourceModel, targetModel, item }) => {
-        // console.log('dropModel:');
-        // console.log(el);
-        // console.log(source);
-        // console.log(target);
-        console.log(name);
-        console.log(sourceModel);
-        console.log(targetModel);
-        console.log(item);
-        console.log(this.groupsList);
-        // console.log(this.groupsList.forEach((g,i) => {
-        //   g.tasks.find(t => {
-        //     return t._id === item._id;
-        //   })
-        // }))
-
+      .subscribe(({ target, source, sourceModel, targetModel }) => {
+        const s = this.getElementIndex(source.parentElement.parentElement.parentElement);
+        const t = this.getElementIndex(target.parentElement.parentElement.parentElement);
+        // console.log(`From group ${s} to group ${t}`);
+        // console.log(sourceModel);
+        // console.log(targetModel);
+        const sGroup = this.groupsList[s];
+        sGroup.tasks = sourceModel;
+        // console.log(sGroup);
+        this.gs.updateGroup(sGroup).subscribe();
+        if (t !== s) {
+          const tGroup = this.groupsList[t];
+          tGroup.tasks = targetModel;
+          this.gs.updateGroup(tGroup).subscribe();
+        }
       }));
   }
 
@@ -86,8 +86,6 @@ export class GroupComponent implements OnInit, OnDestroy {
     this.gs.retrieveAllGroups(viewId)
       .subscribe(gL => {
         this.groupsList = gL;
-        this.groupsList_2 = this.groupsList.slice();
-        console.log(this.groupsList_2);
       });
   }
 
@@ -118,6 +116,11 @@ export class GroupComponent implements OnInit, OnDestroy {
 
   nameInputDisabler() {
     this.nameInputEnabled = false;
+  }
+
+  getElementIndex(el: any) {
+    // console.log([].slice.call(el.parentElement.children).indexOf(el));
+    return [].slice.call(el.parentElement.children).indexOf(el);
   }
 
 }

@@ -1,4 +1,4 @@
-
+import { Group } from '../interfaces/group';
 import { Board } from '../interfaces/board';
 
 export interface Task {
