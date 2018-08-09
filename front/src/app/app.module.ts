@@ -29,6 +29,8 @@ import { ViewComponent } from './components/main/view/view.component';
 import { TaskComponent } from './components/main/task/task.component';
 import { TaskListComponent } from './components/main/task-list/task-list.component';
 
+import { DragulaModule } from 'ng2-dragula';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +50,8 @@ import { TaskListComponent } from './components/main/task-list/task-list.compone
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    HttpModule
+    HttpModule,
+    DragulaModule.forRoot()
   ],
   providers: [SessionService, BoardService, GroupService, ViewService, TaskService],
   bootstrap: [AppComponent]

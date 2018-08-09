@@ -41,7 +41,7 @@ export class TaskComponent implements OnInit {
     }
   }
 
-  updateTask(){
+  updateTask() {
     console.log(this.task);
     this.ts.updateTask(this.task)
         .subscribe(res => {
@@ -57,6 +57,7 @@ export class TaskComponent implements OnInit {
 
   toggleTaskStatus() {
     this.task.active = !this.task.active;
+    this.updateTask();
   }
 
 }
