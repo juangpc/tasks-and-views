@@ -60,7 +60,7 @@ exports.updateGroup = function (req, res, next) {
 }
 
 exports.deleteGroup = function (req, res, next) {
-  console.log(req.params.id);
+  // console.log(req.params.id);
   Group.findById(req.params.id)
     .then((g) => {
       console.log(g);

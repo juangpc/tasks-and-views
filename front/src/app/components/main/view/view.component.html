@@ -1,5 +1,5 @@
 <div class="view-controls" >
-  <input type="text" name="viewName" #newViewInput placeholder="add new view" [(ngModel)]="inputNewView" 
+  <input type="text" class="input" [class.enabled]="nameInputEnabled" name="viewName" #newViewInput placeholder="add new view" [(ngModel)]="inputNewView" 
   (keyup.enter)="createNewView(newViewInput.value)" autocomplete="off">
 
   <div *ngIf="viewsList.length>0">

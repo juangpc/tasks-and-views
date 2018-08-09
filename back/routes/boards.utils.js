@@ -1,9 +1,34 @@
-const User = require('../models/User');
 const Board = require('../models/Board');
-const View = require('../models/View');
-const Group = require('../models/Group');
-const Task = require('../models/Task');
-const passport = require('passport');
+
+// router.get('/all/:id',utils.getBoards);
+// router.get('/:id',utils.getOneBoard);
+// router.post('/new',utils.createBoard);
+// router.put('/:id',utils.updateBoard);
+// router.delete('/:id',utils.deleteBoard);
+
+exports.getBoards = function (req, res, next) {
+  const userId=req.params.id;
+  Board.find({users:{$in : [userId]}})
+    // .populate('views')
+    .then(bL=>{
+      return res.status(200).json(bL)})
+    .catch(err=>{
+      return res.status(500).json(err);
+    })
+}
+
+
+exports.getOneBoard= function (req,res,next) {
+  Board.findById(req.params.id)
+    // .populate('views')
+    .then(b=> {
+      console.log('recupearar solo un board');
+      return res.status(200).json(b)
+    })
+    .catch(err=>{
+      return res.status(500).json(err)
+    });
+}
 
 exports.createBoard = function (req, res, next) {
   const { name, userId } = req.body;
@@ -28,17 +53,6 @@ exports.createBoard = function (req, res, next) {
   )
 }
 
-exports.getBoards = function (req, res, next) {
-  const userId=req.params.id;
-  Board.find({users:{$in : [userId]}})
-    .populate('views')
-    .then(bL=>{
-      return res.status(200).json(bL)})
-    .catch(err=>{
-      return res.status(500).json(err);
-    })
-}
-
 exports.updateBoard = function (req, res, next) {
   console.log(req.params.id);
   console.log(req.body);
@@ -52,11 +66,6 @@ exports.updateBoard = function (req, res, next) {
 }
 
 exports.deleteBoard = function (req, res, next) {
-  // Board.findById(req.params.id)
-  // .then(board=>{
-  //   Promise.all(board.views.forEach(v=>View.findByIdAndRemove(v._id)))
-  //   .then(()=>Board.findByIdAndRemove(req.params.id))
-  // })
   Board.findByIdAndRemove(req.params.id)
     .then(()=> {
       console.log('Board borrado');
@@ -67,14 +76,3 @@ exports.deleteBoard = function (req, res, next) {
       return res.status(500).json(err)});
 }
 
-exports.getOneBoard= function (req,res,next) {
-  Board.findById(req.params.id)
-    .populate('views')
-    .then(b=> {
-      console.log('recupearar solo un board');
-      return res.status(200).json(b)
-    })
-    .catch(err=>{
-      return res.status(500).json(err)
-    });
-}

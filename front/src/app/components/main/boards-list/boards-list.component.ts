@@ -31,7 +31,7 @@ export class BoardsListComponent implements OnInit {
     this.bs.retrieveBoards(user._id)
       .subscribe((list) => {
         this.boardsList = list;
-        // console.log(this.boardsList);
+        console.log(this.boardsList);
       });
   }
 
@@ -52,9 +52,6 @@ export class BoardsListComponent implements OnInit {
   }
 
   goToBoard(boardId) {
-    // console.log(boardId);
-    // const thisBoard: Board = this.boardsList.find(b => b._id === boardId);
-    // this.bs.setActualBoard(thisBoard);
     this.router.navigate(['boards', boardId]);
   }
 

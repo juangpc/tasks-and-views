@@ -1,8 +1,7 @@
-<!DOCTYPE html>
 <div>
   <div *ngIf="viewId" class="group-card new-group-container">
-    <input type="text" class="input" placeholder="add group" #newGropuName [(ngModel)]="inputNewGroup" (keyup.enter)="submitNewGroup(newGropuName.value)"
-      autocomplete="off">
+    <input type="text" class="input" [class.enabled]="nameInputEnabled" (click)="nameInputEnabler()" placeholder="add group" #newGropuName [(ngModel)]="inputNewGroup" (keyup.enter)="submitNewGroup(newGropuName.value)"
+      autocomplete="off" (blur)="nameInputDisabler()">
   </div>
   <div *ngIf="groupsList?.length>0" class="groups-container">
     <div class="group-card" *ngFor="let g of groupsList">

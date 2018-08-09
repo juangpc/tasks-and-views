@@ -1,9 +1,15 @@
-<!DOCTYPE html>
-<p>
-  task works!
-</p>
-
-<!-- link to delete task -->
-<!-- input to edit task name -->
-<!-- a way to edit task description -->
+<div [title]="description">
+    <span class="del-task-section" (click)="deleteTask(task._id)">x</span>
+    <input type="text" class="input task-name-section" [class.enabled]="nameInputEnabled" (click)="enableNameInput()" autocomplete="off" 
+    #name [(ngModel)]="task.name" [value]="task.name" (blur)="updateTask()" (keyup.enter)="updateTask()">
+    <button (click)="toggleDescription()" [innerHTML]="buttonText">edit description</button>
+    <div *ngIf="showDescriptionMenu" >
+        <textarea rows="2" cols="10" #description placeholder="enter the event description" 
+        (blur)="updateTask()" (keyup.enter)="updateTask()" [(ngModel)]="task.description">
+        </textarea>
+    </div>
+    <div (click)="toggleTaskStatus()">
+        Status: {{task.active}}
+    </div>
+</div>
 

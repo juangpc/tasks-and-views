@@ -12,8 +12,9 @@ export class BoardService {
 
   baseURL: string = environment.BASEURL;
   options: object = { withCredentials: true };
-  board: Board;
-  boardsList: Array<Board>;
+
+  boardIdSource = new BehaviorSubject<string>('');
+  boardId$ = this.boardIdSource.asObservable();
 
   constructor(private http: Http) {
   }
@@ -25,24 +26,14 @@ export class BoardService {
     return e;
   }
 
+  setBoardId(id: string): void {
+    this.boardIdSource.next(id);
+  }
+
   retrieveBoards(userId) {
     return this.http.get(`${this.baseURL}/boards/all/${userId}`, this.options)
       .pipe(
         map((res: Response) => {
-          this.boardsList = res.json();
-          // console.log(res.json());
-          // console.log(this.boardsList);
-          return res.json();
-        }),
-        catchError(e => of(this.errorHandler(e)))
-      );
-  }
-
-  createBoard(userId, name) {
-    return this.http.post(`${this.baseURL}/boards/new`, { userId, name }, this.options)
-      .pipe(
-        map((res: Response) => {
-          // console.log(res.json());
           return res.json();
         }),
         catchError(e => of(this.errorHandler(e)))
@@ -55,38 +46,38 @@ export class BoardService {
         map((res: Response) => {
           return res.json();
         }),
-        catchError(e => of(this.errorHandler(e))));
+        catchError(e => of(this.errorHandler(e)))
+      );
   }
 
-  removeBoard(boardId) {
-    return this.http.delete(`${this.baseURL}/boards/${boardId}`, this.options)
+  createBoard(userId, name) {
+    return this.http.post(`${this.baseURL}/boards/new`, { userId, name }, this.options)
       .pipe(
         map((res: Response) => {
-          // console.log('board deleted');
-          // console.log(res.json());
           return res.json();
         }),
         catchError(e => of(this.errorHandler(e)))
       );
   }
 
-  setActualBoard(board: Board): void {
-    this.board = board;
-  }
-
-  getActualBoard(): Board {
-    return this.board;
-  }
-
   editBoard(obj) {
     return this.http.put(`${this.baseURL}/boards/${obj._id}`, obj, this.options)
       .pipe(
         map((res: Response) => {
-          // console.log(res.json());
           return res.json();
         }),
-        catchError(e => of(this.errorHandler(e))));
+        catchError(e => of(this.errorHandler(e)))
+      );
   }
 
+  removeBoard(boardId) {
+    return this.http.delete(`${this.baseURL}/boards/${boardId}`, this.options)
+      .pipe(
+        map((res: Response) => {
+          return res.json();
+        }),
+        catchError(e => of(this.errorHandler(e)))
+      );
+  }
 
 }

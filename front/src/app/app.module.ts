@@ -13,6 +13,7 @@ import { SessionService } from './services/session';
 import { BoardService } from './services/board';
 import { ViewService } from './services/view';
 import { GroupService } from './services/group';
+import { TaskService } from './services/task';
 
 // components
 import { AppComponent } from './app.component';
@@ -49,7 +50,7 @@ import { TaskListComponent } from './components/main/task-list/task-list.compone
     RouterModule.forRoot(routes),
     HttpModule
   ],
-  providers: [SessionService, BoardService, GroupService, ViewService],
+  providers: [SessionService, BoardService, GroupService, ViewService, TaskService],
   bootstrap: [AppComponent]
 })
 

@@ -14,22 +14,9 @@ export class GroupService {
     { name: 'aqua', value: '#00ffff' },
     { name: 'azure', value: '#f0ffff' },
     { name: 'beige', value: '#f5f5dc' },
-    { name: 'black', value: '#000000' },
     { name: 'blue', value: '#0000ff' },
     { name: 'brown', value: '#a52a2a' },
     { name: 'cyan', value: '#00ffff' },
-    { name: 'darkblue', value: '#00008b' },
-    { name: 'darkcyan', value: '#008b8b' },
-    { name: 'darkgrey', value: '#a9a9a9' },
-    { name: 'darkgreen', value: '#006400' },
-    { name: 'darkkhaki', value: '#bdb76b' },
-    { name: 'darkmagenta', value: '#8b008b' },
-    { name: 'darkolivegreen', value: '#556b2f' },
-    { name: 'darkorange', value: '#ff8c00' },
-    { name: 'darkorchid', value: '#9932cc' },
-    { name: 'darkred', value: '#8b0000' },
-    { name: 'darksalmon', value: '#e9967a' },
-    { name: 'darkviolet', value: '#9400d3' },
     { name: 'fuchsia', value: '#ff00ff' },
     { name: 'gold', value: '#ffd700' },
     { name: 'green', value: '#008000' },
@@ -105,6 +92,16 @@ export class GroupService {
           return res.json();
         }),
       catchError(e => of(this.errorHandler(e))));
+  }
+
+  getOneGroup(groupId) {
+    return this.http.get(`${this.baseURL}/groups/${groupId}`, this.options)
+      .pipe(
+        map((res: Response) => {
+          return res.json();
+        }),
+      catchError(e => of(this.errorHandler(e)))
+      );
   }
 
 }

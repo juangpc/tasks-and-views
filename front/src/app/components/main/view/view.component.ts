@@ -23,7 +23,6 @@ export class ViewComponent implements OnInit {
   ngOnInit() {
     // console.log(this.boardId);
     this.retrieveAllViews(this.boardId);
-    // console.log(typeof this.selectedView)
     this.vs.setView(this.selectedView);
     this.vs.setMapper(this.selectedMapper);
   }
@@ -32,7 +31,6 @@ export class ViewComponent implements OnInit {
     this.vs.getAllViews(boardId)
       .subscribe(vL => {
         this.viewsList = vL;
-        // console.log(this.viewsList);
       });
   }
 

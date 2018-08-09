@@ -1,3 +1,13 @@
+.input{
+  background-color: #ffffff;
+  border: 0;
+}
+
+.enabled{
+  background-color: #ccfecc;
+  border:2px solid blue;
+}
+
 .select-editable-view {
   position: relative;
   width: 180px;

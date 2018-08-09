@@ -1,0 +1,7 @@
+.group-card{
+  text-align: center;
+  width:150px;
+  margin:2px;
+  border: 2px solid blue;
+  border-radius: 5px;
+}

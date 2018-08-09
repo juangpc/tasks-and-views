@@ -32,8 +32,8 @@ export class BoardComponent implements OnInit {
     this.route.params
       .subscribe((params) => {
         this.boardId = params['id'];
-        // console.log('recuperando board del servidor');
         this.getOneBoard(this.boardId);
+        this.bs.setBoardId(this.boardId);
         this.ss.isLogged().subscribe(u => {
           this.user = u;
           if (this.board) {
@@ -47,7 +47,7 @@ export class BoardComponent implements OnInit {
     this.bs.getOneBoard(boardId)
       .subscribe(b => {
         this.board = b;
-        // this.bs.setActualBoard(b);
+        // console.log(this.board);
       });
   }
 

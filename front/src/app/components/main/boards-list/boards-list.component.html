@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <div class="board-list-container" *ngIf="user">
   <div class="board-card" *ngFor="let b of boardsList">
     <div (click)="goToBoard(b._id)" class="board-container">

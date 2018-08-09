@@ -4,8 +4,8 @@
 }
 
 .enabled{
-  background-color: #a2f7a2;
-  border: 0;
+  background-color: #ccfecc;
+  border:2px solid blue;
 }
 
 .groups-container{
@@ -13,11 +13,7 @@
 }
 
 .group-card{
-  text-align: center;
   width:150px;
   margin:2px;
-  border: 2px solid blue;
-  border-radius: 5px;
-  background-color: rgb(107, 221, 241);
 }
 

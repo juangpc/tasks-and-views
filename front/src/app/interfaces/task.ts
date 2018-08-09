@@ -6,5 +6,6 @@ export interface Task {
   name: string;
   description: string;
   active: boolean;
+  color?: string;
   board: Board;
 }

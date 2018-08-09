@@ -4,9 +4,19 @@
       <input type="color" [(ngModel)]="groupColor" (change)="saveColor()">
     </div>
   <div class="task-group-name-container">
-    {{group.name}}
+    <input type="text" class="input" [class.enabled]="groupNameInputEnabled" name="groupName" [value]="group.name" 
+    #groupName (blur)="groupNameInputDisabler(groupName.value)" (keyup.enter)="groupNameInputDisabler(groupName.value)"
+    (click)="groupNameInputEnabler()" autocomplete="off">    
   </div>
-  <!-- lista de tasks -->
-  <!-- añadir un nuevo task -->
-
+  <div class="task-list-container">
+    <div class="task-container" *ngFor="let t of group.tasks">
+      <app-task [task]="t" (triggerUpdateList)="retrieveGroup($event)"></app-task>
+    </div>
+    <div class="task-card new-task-card">
+      <h5>
+        <input type="text" class="input" placeholder="add new task" #taskName
+        [(ngModel)]="inputNewTask" (keyup.enter)="submitNewTask(taskName.value)" autocomplete="off">
+      </h5>
+    </div>
+  </div>
 </div>
