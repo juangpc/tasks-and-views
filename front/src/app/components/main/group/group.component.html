@@ -4,7 +4,7 @@
       autocomplete="off" (blur)="nameInputDisabler()">
   </div>
   <div *ngIf="groupsList?.length>0" >
-    <div class="groups-container" dragula="groups">
+    <div class="groups-container" [dragula]="GROUPS" [(dragulaModel)]='groupsList'>
       <div class="group-card" *ngFor="let g of groupsList">
         <app-task-list [group]="g" (triggerUpdateList)="updateGroupList($event)"></app-task-list>
       </div>

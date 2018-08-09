@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Group } from '../../../interfaces/group';
 import { GroupService } from '../../../services/group';
 import { ViewService } from '../../../services/view';
+import { DragulaService } from 'ng2-dragula';
 
 @Component({
   selector: 'app-group',
@@ -13,12 +14,33 @@ export class GroupComponent implements OnInit, OnDestroy {
 
   viewId: string;
   viewSubs: Subscription;
+  dragSubs = new Subscription();
 
   groupsList: Array<Group>;
   inputNewGroup: string = null;
   nameInputEnabled = false;
 
-  constructor(private vs: ViewService, private gs: GroupService) { }
+  constructor(private vs: ViewService,
+              private gs: GroupService,
+              private ds: DragulaService) {
+    this.dragSubs.add(this.ds.dropModel('GROUPS')
+      .subscribe(({ name, el, target, source, sibling, sourceModel, targetModel, item }) => {
+        console.log(name);
+        console.log(el);
+        console.log(target);
+        console.log(source);
+        console.log(sibling);
+        console.log(sourceModel);
+        console.log(targetModel);
+        console.log(item);
+      }));
+      // .subscribe(({ name, el, source}) => {
+      //   console.log(name);
+      //   console.log(el);
+      //   console.log(source);
+
+      // }));
+  }
 
   ngOnInit() {
     this.viewSubs = this.vs.selectedView$
@@ -34,6 +56,7 @@ export class GroupComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.viewSubs.unsubscribe();
     // console.log('destruyendo component group');
+    this.dragSubs.unsubscribe();
   }
 
   retrieveAllGroups(viewId) {
