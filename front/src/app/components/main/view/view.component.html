@@ -1,37 +1,44 @@
-<div class="view-controls" >
-  <input type="text" class="input" [class.enabled]="nameInputEnabled" name="viewName" #newViewInput placeholder="add new view" [(ngModel)]="inputNewView" 
-  (keyup.enter)="createNewView(newViewInput.value)" autocomplete="off">
+<div class="view-controls">
+  <div class="view-selectors">
+    <div>
+      <input type="text" class="input" [class.enabled]="nameInputEnabled" name="viewName" #newViewInput placeholder="add new view"
+        [(ngModel)]="inputNewView" (keyup.enter)="createNewView(newViewInput.value)" autocomplete="off">
+    </div>
 
-  <div *ngIf="viewsList.length>0">
-    Selected View:
-    <div class="select-editable-view">
-      <select [(ngModel)]="selectedView" (ngModelChange)="onViewChange($event)">
-        <option *ngFor="let v of viewsList" [ngValue]="v">{{v.name}}</option>
-      </select>
-      <input type="text" name="viewName" [value]="selectedView?.name" #selectedViewInput autocomplete="off"
-      (blur)="editSelectedView({name:selectedViewInput.value})" (keyup.enter)="editSelectedView({name:selectedViewInput.value})" />
+    <div *ngIf="viewsList.length>0">
+      <p>
+        Selected View
+      </p>
+      <div class="select-editable-view">
+        <select [(ngModel)]="selectedView" (ngModelChange)="onViewChange($event)">
+          <option *ngFor="let v of viewsList" [ngValue]="v">{{v.name}}</option>
+        </select>
+        <input type="text" name="viewName" [value]="selectedView?.name" #selectedViewInput autocomplete="off" (blur)="editSelectedView({name:selectedViewInput.value})"
+          (keyup.enter)="editSelectedView({name:selectedViewInput.value})" />
+      </div>
     </div>
-  </div>
-  
-  <div *ngIf="viewsList.length>1">
-    Selected Mapper:
-    <div class="select-editable-view">
-      <select [(ngModel)]="selectedMapper" (ngModelChange)="onMapChange($event)">
-        <option *ngFor="let v of viewsList" [ngValue]="v">{{v.name}}</option>
-      </select>
-      <input type="text" name="viewName" [value]="selectedMapper?.name" #selectedMapperInput autocomplete="off"
-      (blur)="editSelectedMapper({name:selectedMapperInput.value})" (keyup.enter)="editSelectedMapper({name:selectedMapperInput.value})" />
+
+    <div *ngIf="viewsList.length>1">
+      <p>
+        Selected Mapper
+      </p>
+      <div class="select-editable-view">
+        <select [(ngModel)]="selectedMapper" (ngModelChange)="onMapChange($event)">
+          <option *ngFor="let v of viewsList" [ngValue]="v">{{v.name}}</option>
+        </select>
+        <input type="text" name="viewName" [value]="selectedMapper?.name" #selectedMapperInput autocomplete="off" (blur)="editSelectedMapper({name:selectedMapperInput.value})"
+          (keyup.enter)="editSelectedMapper({name:selectedMapperInput.value})" />
+      </div>
     </div>
-  </div>
-  <div *ngIf="viewsList.length>0">
-      Delete View:
+    <div *ngIf="viewsList.length>0">
+      <p>
+        Delete View
+      </p>
       <div class="select-editable-view">
         <select [(ngModel)]="viewToDelete" (ngModelChange)="onDeleteViewChange($event)">
           <option *ngFor="let v of viewsList" [ngValue]="v">{{v.name}}</option>
         </select>
       </div>
     </div>
+  </div>
 </div>
-
-
-

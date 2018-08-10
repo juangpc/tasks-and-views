@@ -1,7 +1,18 @@
-.main-container{
+/* .main-container{
   width:50rem;
+} */
+
+.board-info-container{
+  display:flex;
+  justify-content: center;
+  margin:0 auto;
 }
 
+.board-info-container input{
+  text-align:center;
+ /*  color: #ffff; */
+ font-size:2rem;
+}
 
 .input{
   background-color: #ffffff;
@@ -12,3 +23,4 @@
   background-color: #ccfecc;
   border: 0;
 }
+

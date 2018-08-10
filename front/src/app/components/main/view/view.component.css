@@ -1,25 +1,18 @@
-.input{
-  background-color: #ffffff;
-  border: 0;
+.view-selectors {
+  margin-top: 0.9rem;
+  display: flex;
+  justify-content: space-around;
 }
 
-.enabled{
-  background-color: #ccfecc;
-  border:2px solid blue;
+.view-selectors div {
+  text-align: center;
 }
 
-.select-editable-view {
-  position: relative;
-  width: 180px;
-  height: 18px;
+.view-selectors p {
+  margin-bottom: .5rem;
 }
 
-.select-editable-map {
-  width: 180px;
-  height: 18px;
-}
-
-.select-editable-view select{
+.select-editable-view select {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -39,7 +32,28 @@
   height: 14px;
 }
 
+.input {
+  background-color: #ffffff;
+  border: 0;
+}
+
+.enabled {
+  background-color: #ccfecc;
+  border: 0;
+}
+
+.select-editable-view {
+  position: relative;
+  width: 180px;
+  height: 18px;
+}
 
 .select-editable-view select:focus, .select-editable-view input:focus {
   outline: none;
 }
+
+.select-editable-map {
+  width: 180px;
+  height: 18px;
+}
+

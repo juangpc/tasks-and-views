@@ -1,7 +1,7 @@
 <div class="task-group-container" [ngStyle]="{'background-color':groupColor}">
   <div>
       <div (click)="onDeleteGroup(group._id)">X</div>
-      <input type="color" [(ngModel)]="groupColor" (change)="saveColor()">
+      <input class="color" type="color" [(ngModel)]="groupColor" (change)="saveColor()">
     </div>
   <div class="task-group-name-container">
     <input type="text" class="input-name" [class.enabled]="groupNameInputEnabled" name="groupName" [value]="group.name" 
@@ -14,7 +14,7 @@
     </div>
     <div class="task-card new-task-card">
       <h5>
-        <input type="text" class="input" placeholder="add new task" #taskName
+        <input type="text" class="input-add-task" placeholder="add new task" #taskName
         [(ngModel)]="inputNewTask" (keyup.enter)="submitNewTask(taskName.value)" autocomplete="off">
       </h5>
     </div>

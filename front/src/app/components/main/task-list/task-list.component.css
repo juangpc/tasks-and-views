@@ -30,3 +30,22 @@
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
   filter: alpha(opacity=40);
 }
+
+
+.task-group-container{
+  font-size:.6rem;
+
+}
+
+input{
+  font-size: 0.6rem;
+  border: 0;
+}
+
+.color input{
+  width:50px;
+}
+
+.input-add-task input{
+  font-size: .8rem;
+}

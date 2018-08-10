@@ -27,3 +27,8 @@
   transform: translateX(100%);
   z-index: 1;
 }
+
+input{
+  font-size:.6rem;
+  width: 150px;
+}

@@ -2,10 +2,9 @@
   <a [routerLink]="['/boards']"><< Back to Boards List</a>
   <button *ngIf="isOwner" (click)="deleteThisBoard(board._id)">delete this board</button>
   <div class="board-info-container">
-    Board Name:
     <input type="text" class="input" [class.enabled]="nameInputEnabled" name="name" [value]="board.name" #name (blur)="nameInputDisabler({name:name.value})"
       (keyup.enter)="nameInputDisabler({name:name.value})" (click)="nameInputEnabler()" autocomplete="off">
+    </div>
   <app-view [boardId]="boardId"></app-view>
   <app-group></app-group>
-  </div>
 </div>
