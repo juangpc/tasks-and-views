@@ -1,6 +1,5 @@
 <div class="main-container" *ngIf="board && user" #focusable>
-  <a [routerLink]="['/boards']">Back to Boards List</a>
-  <br>
+  <a [routerLink]="['/boards']"><< Back to Boards List</a>
   <button *ngIf="isOwner" (click)="deleteThisBoard(board._id)">delete this board</button>
   <div class="board-info-container">
     Board Name:

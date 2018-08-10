@@ -1,14 +1,13 @@
 <div class="board-list-container" *ngIf="user">
   <div class="board-card" *ngFor="let b of boardsList">
-    <div (click)="goToBoard(b._id)" class="board-container">
-      <h5>{{b.name}}</h5>
+    <div (click)="goToBoard(b._id)" class="name-container">
+      <h2>{{b.name}}</h2>
     </div>
     <button *ngIf="b.owner==this.user._id" (click)="deleteBoard(b._id)">delete</button>
   </div>
   <div class="board-card new-board-container">
-    <h5>
       <input type="text" class="input" placeholder="add new board" #name 
       [(ngModel)]="inputNewBoard" (keyup.enter)="submitNewBoard(name.value)" autocomplete="off">
-    </h5>
+    
   </div>
 </div>

@@ -1,8 +1,9 @@
 <div class="container">
+    
+  <div class="salutation" *ngIf="ss.user"><h4 >Hi, {{ss.user.username}}.</h4></div>
   <div class="logo">
-    <h3>logo img</h3>
+    <h1>Tasks & Views</h1>
   </div>
-  <div class="salutation" *ngIf="ss.user"><h4 >Hi, {{ss.user.username}}</h4></div>
   <div class="menu">
     <a [routerLink]="['']">Home</a>
     <a *ngIf="!ss.user" [routerLink]="['login']">Log In</a>
